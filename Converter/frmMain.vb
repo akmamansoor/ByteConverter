@@ -20,11 +20,11 @@
 
 #Region "About"
 
-' Application      :- Byte Converter
-' Author           :- A.K. Mansoor Ahamed (a.k.a) A.K.M.A
-' Date             :- March 2009
-' Mail Address     :- akmamirror-techno@yahoo.co.in 
-'                     btw, it's a hyphen in the middle not underscore ;-)
+' Application       :- Byte Converter
+' Author            :- A.K. Mansoor Ahamed (a.k.a) A.K.M.A
+' Company           :- AKMA Solutions
+' Date              :- March 2009
+' Mail Address      :- akma.mansoor@gmail.com 
 
 ' Description      :- This sofware can be used to convert a given numeric value from one unit to another, 
 '                     among the following units,
@@ -36,10 +36,17 @@
 
 #End Region
 
+'TO DO: 
+'1) Improve text validation for "5.E", "5+-", "5-8", "5+8", and E,+,-,. in general during keypress and copy/paste
+'2) Provide support for reading size of files/folders
+'   2a) Create browse button to choose file
+'   2b) Provide drag drop functionality for reading file size
+'4) Estimate download times based on input size and specified bandwidth
+
 #Region "Source Code"
 
 Option Explicit On
-Imports System.Diagnostics
+'Imports System.Diagnostics
 
 Public Class frmMain
 
@@ -59,8 +66,6 @@ Public Class frmMain
     Public Event Exited As EventHandler
     Declare Function OpenIcon Lib "user32" (ByVal hwnd As Long) As Long
     Declare Function SetForegroundWindow Lib "user32" (ByVal hwnd As Long) As Long
-    Public Const WM_NCRBUTTONDOWN = &HA4
-    Public Const WM_NCRBUTTONUP = &HA5
 
 #End Region
 
@@ -137,7 +142,6 @@ Public Class frmMain
     End Sub
 
     ' Textbox validation, also triggers txtInputValue_Textchanged event. 
-
     Private Sub txtInputValue_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) _
     Handles txtInputValue.KeyPress
         ' 3 = Ctrl+C | 8 = Bkspc | 22 = Ctrl+V | 24 = Ctrl+X.
@@ -176,12 +180,13 @@ Public Class frmMain
     End Sub
 
     Private Sub ShowHideLblError()
+        ' Max and Min size of the form keeps the window size in check
         If Trim(lblError.Text) = "" Then
             lblError.Visible = False
-            If Me.Height > 430 Then Me.Height = Me.Height - lblError.Height
+            Me.Height = Me.Height - lblError.Height
         Else
             lblError.Visible = True
-            If Me.Height < 470 Then Me.Height = Me.Height + lblError.Height
+            Me.Height = Me.Height + lblError.Height
         End If
     End Sub
 
@@ -251,7 +256,7 @@ Public Class frmMain
             And str.Chars(index) <> "-" _
             And str.Chars(index) <> "." Then
                 IsString = True
-                Exit Function
+                Exit Function 'no need to validate anymore characters
             ElseIf str.Chars(index) = "." And str.Contains(".") And str.IndexOf(".") <> index Then
                 IsString = True
             ElseIf str.Chars(index) = "+" _
@@ -341,22 +346,35 @@ Public Class frmMain
 
     Private Sub CalcAndDispResults()
         Try
-            txtResult1.Text = input.ToString
-            txtResult2.Text = (input / 8).ToString
-            txtResult3.Text = (input / (8 * convType)).ToString
-            txtResult4.Text = (input / (8 * (convType ^ 2))).ToString
-            txtResult5.Text = (input / (8 * (convType ^ 3))).ToString
-            txtResult6.Text = (input / (8 * (convType ^ 4))).ToString
-            txtResult7.Text = (input / (8 * (convType ^ 5))).ToString
-            txtResult8.Text = (input / (8 * (convType ^ 6))).ToString
-            txtResult9.Text = (input / (8 * (convType ^ 7))).ToString
-            txtResult10.Text = (input / (8 * (convType ^ 8))).ToString
+            If (input = 0) Then
+                txtResult1.Text = "0"
+                txtResult2.Text = "0"
+                txtResult3.Text = "0"
+                txtResult4.Text = "0"
+                txtResult5.Text = "0"
+                txtResult6.Text = "0"
+                txtResult7.Text = "0"
+                txtResult8.Text = "0"
+                txtResult9.Text = "0"
+                txtResult10.Text = "0"
+            Else
+                txtResult1.Text = input.ToString
+                txtResult2.Text = (input / 8).ToString
+                txtResult3.Text = (input / (8 * convType)).ToString
+                txtResult4.Text = (input / (8 * (convType ^ 2))).ToString
+                txtResult5.Text = (input / (8 * (convType ^ 3))).ToString
+                txtResult6.Text = (input / (8 * (convType ^ 4))).ToString
+                txtResult7.Text = (input / (8 * (convType ^ 5))).ToString
+                txtResult8.Text = (input / (8 * (convType ^ 6))).ToString
+                txtResult9.Text = (input / (8 * (convType ^ 7))).ToString
+                txtResult10.Text = (input / (8 * (convType ^ 8))).ToString
 
-            ' Clears the lblError.text, when the input is valid, thus, triggering the lblError.Textchanged event.
+                ' Clears the lblError.text, when the input is valid, thus, triggering the lblError.Textchanged event.
 
-            If (txtInputValue.Text <> "" And txtResult1.Text <> "0") _
-            Or (CDbl(txtInputValue.Text) = 0.0 And txtResult1.Text = "0" And Not txtInputValue.Text.EndsWith(".")) Then
-                lblError.Text = ""
+                If (txtInputValue.Text <> "" And txtResult1.Text <> "0") _
+                Or (CDbl(txtInputValue.Text) = 0.0 And txtResult1.Text = "0" And Not txtInputValue.Text.EndsWith(".")) Then
+                    lblError.Text = ""
+                End If
             End If
 
         Catch ex As Exception
@@ -365,7 +383,6 @@ Public Class frmMain
     End Sub
 
     ' Checks if the process(calc.exe) is already running, if so then associate it with myProcess object
-
     Private Function isProcessAlreadyOpen() As Boolean
         InstanceArrayOfMyProcess = System.Diagnostics.Process.GetProcessesByName("calc")
         If InstanceArrayOfMyProcess.Length > 0 Then
@@ -376,16 +393,6 @@ Public Class frmMain
             Return False ' No instance of the process is running
         End If
     End Function
-
-    ' For using the context menu in the title bar of the application.
-
-    Protected Overrides Sub WndProc(ByRef WndMsg As System.Windows.Forms.Message)
-        If WndMsg.Msg = WM_NCRBUTTONDOWN Then
-            ContextMenuStrip1.Show(Control.MousePosition)
-            Return ' Prevent to process this Message to the Base Class
-        End If
-        MyBase.WndProc(WndMsg)
-    End Sub
 
 #End Region
 

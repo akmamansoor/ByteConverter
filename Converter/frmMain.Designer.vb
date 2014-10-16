@@ -19,41 +19,41 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.txtInputValue = New System.Windows.Forms.TextBox
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtInputValue = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.cmbInputUnit = New System.Windows.Forms.ComboBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.cmbConvType = New System.Windows.Forms.ComboBox
-        Me.lblError = New System.Windows.Forms.Label
-        Me.Panel1 = New System.Windows.Forms.Panel
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.txtResult10 = New System.Windows.Forms.TextBox
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.txtResult9 = New System.Windows.Forms.TextBox
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.txtResult8 = New System.Windows.Forms.TextBox
-        Me.txtResult7 = New System.Windows.Forms.TextBox
-        Me.txtResult6 = New System.Windows.Forms.TextBox
-        Me.txtResult5 = New System.Windows.Forms.TextBox
-        Me.txtResult4 = New System.Windows.Forms.TextBox
-        Me.txtResult3 = New System.Windows.Forms.TextBox
-        Me.txtResult2 = New System.Windows.Forms.TextBox
-        Me.txtResult1 = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.btnCalculator = New System.Windows.Forms.Button
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmbInputUnit = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmbConvType = New System.Windows.Forms.ComboBox()
+        Me.lblError = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtResult10 = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.txtResult9 = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtResult8 = New System.Windows.Forms.TextBox()
+        Me.txtResult7 = New System.Windows.Forms.TextBox()
+        Me.txtResult6 = New System.Windows.Forms.TextBox()
+        Me.txtResult5 = New System.Windows.Forms.TextBox()
+        Me.txtResult4 = New System.Windows.Forms.TextBox()
+        Me.txtResult3 = New System.Windows.Forms.TextBox()
+        Me.txtResult2 = New System.Windows.Forms.TextBox()
+        Me.txtResult1 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.btnCalculator = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -84,20 +84,20 @@ Partial Class frmMain
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.CloseToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(116, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(117, 48)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
         Me.AboutToolStripMenuItem.Text = "About..."
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Image = CType(resources.GetObject("CloseToolStripMenuItem.Image"), System.Drawing.Image)
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'cmbInputUnit
@@ -128,7 +128,7 @@ Partial Class frmMain
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label3.Location = New System.Drawing.Point(9, 10)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(114, 16)
+        Me.Label3.Size = New System.Drawing.Size(113, 16)
         Me.Label3.TabIndex = 102
         Me.Label3.Text = "Conversion Type"
         '
@@ -147,7 +147,7 @@ Partial Class frmMain
         Me.lblError.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblError.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblError.ForeColor = System.Drawing.Color.Red
-        Me.lblError.Location = New System.Drawing.Point(7, 390)
+        Me.lblError.Location = New System.Drawing.Point(7, 392)
         Me.lblError.Name = "lblError"
         Me.lblError.Size = New System.Drawing.Size(317, 40)
         Me.lblError.TabIndex = 114
@@ -187,7 +187,7 @@ Partial Class frmMain
         Me.Label14.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(199, 261)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(107, 16)
+        Me.Label14.Size = New System.Drawing.Size(106, 16)
         Me.Label14.TabIndex = 134
         Me.Label14.Text = "Yotta Bytes (YB)"
         '
@@ -245,7 +245,7 @@ Partial Class frmMain
         Me.Label10.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.Location = New System.Drawing.Point(199, 157)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(99, 16)
+        Me.Label10.Size = New System.Drawing.Size(98, 16)
         Me.Label10.TabIndex = 130
         Me.Label10.Text = "Tera Bytes (TB)"
         '
@@ -398,8 +398,10 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.AliceBlue
-        Me.ClientSize = New System.Drawing.Size(329, 436)
+        Me.ClientSize = New System.Drawing.Size(330, 437)
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.cmbConvType)
         Me.Controls.Add(Me.Panel1)
@@ -411,12 +413,12 @@ Partial Class frmMain
         Me.Controls.Add(Me.cmbInputUnit)
         Me.Controls.Add(Me.Label1)
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(335, 470)
-        Me.MinimumSize = New System.Drawing.Size(335, 430)
+        Me.MaximumSize = New System.Drawing.Size(346, 476)
+        Me.MinimumSize = New System.Drawing.Size(346, 430)
         Me.Name = "frmMain"
+        Me.Padding = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Byte Converter"
         Me.ContextMenuStrip1.ResumeLayout(False)

@@ -1,19 +1,13 @@
-BYTE CONVERTER ver_1.0.0.1 can be used to convert a given numeric value from one unit to another,
+BYTE CONVERTER can be used to convert a given numeric value from one unit to another,
 among the following units,
 
 Decimal - Bits, Bytes, KiloBytes, MegaBytes, GigaBytes, TeraBytes, PetaBytes, ExaBytes, ZettaBytes, YottaBytes.
 Binary  - Bits, Bytes, KibiBytes, MebiBytes, GibiBytes, TebiBytes, PebiBytes, ExbiBytes, ZebiBytes, YobiBytes.
 
 If you have any suggestions or find any bugs in this application,
-please do e-mail me at the address given in the "About" section
-(you can get it by right clicking on the application).
+please do e-mail me.
 
-Requirements:-  Dot NET Framework (if you don't have it you can download it from Microsoft's Download center)
-
-
-Change-log:
-Fixed the redundant display of the label "Exbi/Exa Bytes" in the results section.
-
+Requirements:-  Dot NET Framework
 
 || Note: ||
 
