@@ -8,8 +8,7 @@ The supported units are,
 
 __Requirements:__  [.NET Framework (2.0)](http://www.softpedia.com/get/Others/Signatures-Updates/Microsoft-NET-Framework-Service-Pack.shtml) or above
 
-__Download the executable file at:__  
-https://github.com/akmamansoor/ByteConverter/releases
+__Download the executable file at:__ https://github.com/akmamansoor/ByteConverter/releases
 
 __Note:__
 >
