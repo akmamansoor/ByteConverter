@@ -1,7 +1,7 @@
 
 #Region "Copyright Notice"
 
-' Copyright (C) 2009 - A.K. Mansoor Ahamed
+' Copyright © 2009 A.K. Mansoor Ahamed (AKMA Solutions)
 
 ' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -21,10 +21,10 @@
 #Region "About"
 
 ' Application       :- Byte Converter
-' Author            :- A.K. Mansoor Ahamed (a.k.a) A.K.M.A
+' Developer         :- A.K. Mansoor Ahamed (alias) A.K.M.A
 ' Company           :- AKMA Solutions
-' Date              :- March 2009
-' Mail Address      :- akma.mansoor@gmail.com 
+' Date              :- November 2014
+' Email             :- akma.mansoor@gmail.com 
 
 ' Description      :- This sofware can be used to convert a given numeric value from one unit to another, 
 '                     among the following units,
@@ -36,17 +36,10 @@
 
 #End Region
 
-'TO DO: 
-'1) Improve text validation for "5.E", "5+-", "5-8", "5+8", and E,+,-,. in general during keypress and copy/paste
-'2) Provide support for reading size of files/folders
-'   2a) Create browse button to choose file
-'   2b) Provide drag drop functionality for reading file size
-'4) Estimate download times based on input size and specified bandwidth
-
 #Region "Source Code"
 
 Option Explicit On
-'Imports System.Diagnostics
+Imports System.Text.RegularExpressions
 
 Public Class frmMain
 
@@ -141,28 +134,33 @@ Public Class frmMain
         Application.Exit()
     End Sub
 
-    ' Textbox validation, also triggers txtInputValue_Textchanged event. 
+    'Input validation during KeyPress Event, also triggers txtInputValue_Textchanged event (if available). 
+    'Used to ignore keypress (via keyboard) of invalid characters. This functionality is OPTIONAL.
     Private Sub txtInputValue_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) _
     Handles txtInputValue.KeyPress
-        ' 3 = Ctrl+C | 8 = Bkspc | 22 = Ctrl+V | 24 = Ctrl+X.
-        If Not e.KeyChar = Convert.ToChar(3) And _
+        ' Don't validate characters representing cut, copy, paste and backspace operations
+        ' Keychars for Ctrl+A = 1 | Ctrl+C = 3 | Bkspc = 8 | Ctrl+V = 22 | Ctrl+X = 24.
+        If Not e.KeyChar = Convert.ToChar(1) And _
+        Not e.KeyChar = Convert.ToChar(3) And _
         Not e.KeyChar = Convert.ToChar(8) And _
         Not e.KeyChar = Convert.ToChar(22) And _
         Not e.KeyChar = Convert.ToChar(24) Then
+            ' Allow user to press only the following keys --> any number (0 to 9), E, +, - and .
             If Not IsNumeric(e.KeyChar) And _
                Not e.KeyChar.ToString.ToUpper = "E" And _
                Not (e.KeyChar = "+" Or e.KeyChar = "-") And _
                Not e.KeyChar = "." Then
                 e.Handled = True
+                'Allow only one occurence for the following keys --> . and E
             ElseIf e.KeyChar = "." And txtInputValue.Text.Contains(".") Then
-                e.Handled = True
-            ElseIf e.KeyChar = "+" And (txtInputValue.Text.Contains("+") Or txtInputValue.Text.Contains("-")) Then
-                e.Handled = True
-            ElseIf e.KeyChar = "-" And (txtInputValue.Text.Contains("+") Or txtInputValue.Text.Contains("-")) Then
                 e.Handled = True
             ElseIf e.KeyChar.ToString.ToUpper = "E" And txtInputValue.Text.Contains("E") Then
                 e.Handled = True
+            Else
+                'Validate the modified input
+                IsInputValid(txtInputValue.Text)
             End If
+
         End If
     End Sub
 
@@ -240,48 +238,27 @@ Public Class frmMain
         cmbInputUnit.SelectedIndex = temp
     End Sub
 
-    'Methods for Validation and Conversions. 
-
-    Private Function IsString(ByVal str As String) As Boolean
-
-        ' Used to check if the input entered is a valid number or not,
-        ' especially when the input is entered by copy-pasting.
-        ' If return value is true, it means the input is not valid
-
-        IsString = False
-        For index = 0 To str.Length - 1
-            If Not IsNumeric(str.Chars(index)) _
-            And str.Chars(index).ToString.ToUpper <> "E" _
-            And str.Chars(index) <> "+" _
-            And str.Chars(index) <> "-" _
-            And str.Chars(index) <> "." Then
-                IsString = True
-                Exit Function 'no need to validate anymore characters
-            ElseIf str.Chars(index) = "." And str.Contains(".") And str.IndexOf(".") <> index Then
-                IsString = True
-            ElseIf str.Chars(index) = "+" _
-            And (txtInputValue.Text.Contains("+") Or txtInputValue.Text.Contains("-")) _
-            And str.IndexOf("+") <> index Then
-                IsString = True
-            ElseIf str.Chars(index) = "-" _
-            And (txtInputValue.Text.Contains("+") Or txtInputValue.Text.Contains("-")) _
-            And str.IndexOf("-") <> index Then
-                IsString = True
-            ElseIf str.Chars(index).ToString.ToUpper = "E" And str.Contains("E") And str.IndexOf("E") <> index Then
-                IsString = True
-                Exit Function
-            End If
-        Next
+    'Input validation using Regular Expression
+    Private Function IsInputValid(ByVal input As String) As Boolean
+        'Valid input should follow one of these patterns
+        'sign(0 or 1 times)->number(0 or more times)->dot(0 or 1 times)->number(1 or more times)->E(exactly once)->sign(0 or 1 times)->number(1 or more times)
+        'OR without exponent notation...
+        'sign(0 or 1 times)->number(0 or more times)->dot(0 or 1 times)->number(1 or more times)
+        Dim pattern_regex As String = "([+-]?[0-9]*[\.]?[0-9]+[E]{1}[+-]?[0-9]+)$|([+-]?[0-9]*[\.]?[0-9]+)$"
+        If Regex.IsMatch(input, pattern_regex) = True Then
+            lblError.Text = ""
+            Return True
+        Else
+            lblError.Text = "Enter a valid number"
+            Return False
+        End If
     End Function
 
     Private Sub ConvertToBit()
         Try
             input = 0
 
-            If Trim(txtInputValue.Text) = "" Then
-                lblError.Text = "Enter a valid number"
-            ElseIf IsString(txtInputValue.Text) = True _
-            Or txtInputValue.Text.IndexOf(".") = txtInputValue.Text.Length - 1 Then
+            If IsInputValid(txtInputValue.Text) = False Then
                 lblError.Text = "Enter a valid number"
             ElseIf cmbInputUnit.SelectedIndex = -1 Then
                 lblError.Text = "Select Input unit"
@@ -370,7 +347,6 @@ Public Class frmMain
                 txtResult10.Text = (input / (8 * (convType ^ 8))).ToString
 
                 ' Clears the lblError.text, when the input is valid, thus, triggering the lblError.Textchanged event.
-
                 If (txtInputValue.Text <> "" And txtResult1.Text <> "0") _
                 Or (CDbl(txtInputValue.Text) = 0.0 And txtResult1.Text = "0" And Not txtInputValue.Text.EndsWith(".")) Then
                     lblError.Text = ""
@@ -382,7 +358,7 @@ Public Class frmMain
         End Try
     End Sub
 
-    ' Checks if the process(calc.exe) is already running, if so then associate it with myProcess object
+    ' Checks if the process(calc.exe) is already running, if so, then associate it with myProcess object
     Private Function isProcessAlreadyOpen() As Boolean
         InstanceArrayOfMyProcess = System.Diagnostics.Process.GetProcessesByName("calc")
         If InstanceArrayOfMyProcess.Length > 0 Then
