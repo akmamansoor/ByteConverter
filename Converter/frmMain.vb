@@ -20,19 +20,18 @@
 
 #Region "About"
 
-' Application       :- Byte Converter
-' Developer         :- A.K. Mansoor Ahamed (alias) A.K.M.A
-' Company           :- AKMA Solutions
-' Date              :- November 2014
-' Email             :- akma.mansoor@gmail.com 
+' Application   :- Byte Converter
+' Developer     :- A.K. Mansoor Ahamed (alias) A.K.M.A
+' Company       :- AKMA Solutions
+' Date          :- November 2014
+' Email         :- akma.mansoor@gmail.com 
 
-' Description      :- This sofware can be used to convert a given numeric value from one unit to another, 
-'                     among the following units,
-'                     Decimal - Bits, Bytes, KB, MB, GB, TB, PB, EB, ZB, YB
-'                     Binary  - Bits, Bytes, KiB, MiB, GiB, TiB, PiB, EiB, ZiB, YiB
+' Description   :- Byte Converter is a simple utility to convert numeric units of digital information from one form to another. 
+'                  The supported units are,
+'                  Decimal - Bits, Bytes, KiloBytes (KB), MegaBytes (MB), GigaBytes (GB), TeraBytes (TB), PetaBytes (TB), ExaBytes (EB), ZettaBytes (ZB), YottaBytes (YB)
+'                  Binary  - Bits, Bytes, KiloBytes (KiB), MegaBytes (MiB), GigaBytes (GiB), TeraBytes (TiB), PetaBytes (TiB), ExaBytes (EiB), ZettaBytes (ZiB), YottaBytes (YiB)
 
-' Note             :- If you have any suggestions\corrections in this application,
-'                     please do e-mail me at the address above.
+' Note          :- If you have any suggestions\corrections in this application, please do e-mail me at the address above.
 
 #End Region
 
@@ -40,6 +39,7 @@
 
 Option Explicit On
 Imports System.Text.RegularExpressions
+Imports System.IO
 
 Public Class frmMain
 
@@ -164,9 +164,65 @@ Public Class frmMain
         End If
     End Sub
 
+    Private Sub btnFile_Click(sender As Object, e As EventArgs) Handles btnFile.Click
+        If (OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+            Dim totalFileSize As Long = 0
+            For Each fileName As String In OpenFileDialog1.FileNames
+                totalFileSize += New FileInfo(fileName).Length.ToString()
+            Next
+            cmbConvType.SelectedIndex = 1
+            cmbInputUnit.SelectedIndex = 1 'File Size is always read as Bytes
+            txtInputValue.Text = totalFileSize
+        End If
+    End Sub
+
+    Private Sub btnFolder_Click(sender As Object, e As EventArgs) Handles btnFolder.Click
+        If (FolderBrowserDialog1.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+            Dim parentDirSize As Long = 0
+            'To get the details of any directory, DirectoryInfo Class is used
+
+            'This is the parent directory chosen by the user
+            Dim parentDirInfo As DirectoryInfo = New DirectoryInfo(FolderBrowserDialog1.SelectedPath)
+            'Recursive reading of directory, to get the size of all sub-directories and its files
+            parentDirSize = getFileSizes(parentDirSize, parentDirInfo)
+
+            'After finalizing the directory size, set it as the input (in Bytes) for conversion
+            cmbConvType.SelectedIndex = 1
+            cmbInputUnit.SelectedIndex = 1 'File Size is always read as Bytes
+            txtInputValue.Text = parentDirSize
+        End If
+    End Sub
+
 #End Region
 
 #Region "All Methods"
+
+    Private Function getFileSizes(CurrentSize As Long, currentDirInfo As DirectoryInfo) As Long
+        'First read all the files in this directory
+        If (currentDirInfo.Attributes And FileAttributes.ReadOnly) > 0 Then
+            Return CurrentSize
+        End If
+
+        Try 'To handle Access Denied Errors
+            For Each fileName As FileInfo In currentDirInfo.GetFiles
+                CurrentSize += fileName.Length
+            Next
+        Catch ex As Exception
+            'Do Nothing
+        End Try
+
+        Try
+            'Check if sub-directories exist, if they do then recursively read their file sizes as well
+            For Each subDirInfo As DirectoryInfo In currentDirInfo.GetDirectories
+                'Only the FILE sizes are taken into account, so '+=' operator SHOULD NOT BE used here for directories
+                CurrentSize = getFileSizes(CurrentSize, subDirInfo)
+            Next
+        Catch ex As Exception
+            'Do Nothing
+        End Try
+
+        Return CurrentSize
+    End Function
 
     Private Sub ResetFeilds()
         txtInputValue.Text = "0"
@@ -371,6 +427,7 @@ Public Class frmMain
     End Function
 
 #End Region
+
 
 End Class
 
