@@ -71,9 +71,9 @@ Partial Class frmMain
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(9, 59)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(147, 16)
+        Me.Label1.Size = New System.Drawing.Size(146, 16)
         Me.Label1.TabIndex = 100
-        Me.Label1.Text = "Enter value to convert"
+        Me.Label1.Text = "Input value to convert"
         '
         'txtInputValue
         '
@@ -82,7 +82,7 @@ Partial Class frmMain
         Me.txtInputValue.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtInputValue.Location = New System.Drawing.Point(12, 78)
         Me.txtInputValue.Name = "txtInputValue"
-        Me.txtInputValue.Size = New System.Drawing.Size(188, 22)
+        Me.txtInputValue.Size = New System.Drawing.Size(214, 22)
         Me.txtInputValue.TabIndex = 2
         Me.txtInputValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -112,7 +112,7 @@ Partial Class frmMain
         Me.cmbInputUnit.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbInputUnit.FormattingEnabled = True
         Me.cmbInputUnit.Items.AddRange(New Object() {"Bit", "Byte", "Kilo Byte", "Mega Byte", "Giga Byte", "Tera Byte", "Peta byte", "Exa byte"})
-        Me.cmbInputUnit.Location = New System.Drawing.Point(209, 78)
+        Me.cmbInputUnit.Location = New System.Drawing.Point(232, 78)
         Me.cmbInputUnit.Name = "cmbInputUnit"
         Me.cmbInputUnit.Size = New System.Drawing.Size(115, 23)
         Me.cmbInputUnit.TabIndex = 3
@@ -122,7 +122,7 @@ Partial Class frmMain
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(206, 59)
+        Me.Label2.Location = New System.Drawing.Point(229, 59)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(69, 16)
         Me.Label2.TabIndex = 101
@@ -133,7 +133,7 @@ Partial Class frmMain
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(9, 7)
+        Me.Label3.Location = New System.Drawing.Point(6, 7)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(113, 16)
         Me.Label3.TabIndex = 102
@@ -157,7 +157,7 @@ Partial Class frmMain
         Me.lblError.ForeColor = System.Drawing.Color.Red
         Me.lblError.Location = New System.Drawing.Point(7, 392)
         Me.lblError.Name = "lblError"
-        Me.lblError.Size = New System.Drawing.Size(317, 40)
+        Me.lblError.Size = New System.Drawing.Size(340, 40)
         Me.lblError.TabIndex = 114
         Me.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -186,14 +186,14 @@ Partial Class frmMain
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Location = New System.Drawing.Point(7, 106)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(317, 282)
+        Me.Panel1.Size = New System.Drawing.Size(340, 282)
         Me.Panel1.TabIndex = 115
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(199, 261)
+        Me.Label14.Location = New System.Drawing.Point(222, 261)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(106, 16)
         Me.Label14.TabIndex = 134
@@ -201,10 +201,11 @@ Partial Class frmMain
         '
         'txtResult10
         '
-        Me.txtResult10.Location = New System.Drawing.Point(8, 259)
+        Me.txtResult10.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult10.Location = New System.Drawing.Point(5, 259)
         Me.txtResult10.Name = "txtResult10"
         Me.txtResult10.ReadOnly = True
-        Me.txtResult10.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult10.Size = New System.Drawing.Size(211, 22)
         Me.txtResult10.TabIndex = 123
         Me.txtResult10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -212,7 +213,7 @@ Partial Class frmMain
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(199, 235)
+        Me.Label13.Location = New System.Drawing.Point(222, 235)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(103, 16)
         Me.Label13.TabIndex = 133
@@ -220,10 +221,11 @@ Partial Class frmMain
         '
         'txtResult9
         '
-        Me.txtResult9.Location = New System.Drawing.Point(8, 233)
+        Me.txtResult9.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult9.Location = New System.Drawing.Point(5, 233)
         Me.txtResult9.Name = "txtResult9"
         Me.txtResult9.ReadOnly = True
-        Me.txtResult9.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult9.Size = New System.Drawing.Size(211, 22)
         Me.txtResult9.TabIndex = 122
         Me.txtResult9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -231,7 +233,7 @@ Partial Class frmMain
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(199, 209)
+        Me.Label12.Location = New System.Drawing.Point(222, 209)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(99, 16)
         Me.Label12.TabIndex = 132
@@ -241,7 +243,7 @@ Partial Class frmMain
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(199, 183)
+        Me.Label11.Location = New System.Drawing.Point(222, 183)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(103, 16)
         Me.Label11.TabIndex = 131
@@ -251,7 +253,7 @@ Partial Class frmMain
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(199, 157)
+        Me.Label10.Location = New System.Drawing.Point(222, 157)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(98, 16)
         Me.Label10.TabIndex = 130
@@ -261,7 +263,7 @@ Partial Class frmMain
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(199, 131)
+        Me.Label9.Location = New System.Drawing.Point(222, 131)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(104, 16)
         Me.Label9.TabIndex = 129
@@ -271,7 +273,7 @@ Partial Class frmMain
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(199, 105)
+        Me.Label8.Location = New System.Drawing.Point(222, 105)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(110, 16)
         Me.Label8.TabIndex = 128
@@ -281,7 +283,7 @@ Partial Class frmMain
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(199, 79)
+        Me.Label7.Location = New System.Drawing.Point(222, 79)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(98, 16)
         Me.Label7.TabIndex = 127
@@ -291,7 +293,7 @@ Partial Class frmMain
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(199, 53)
+        Me.Label6.Location = New System.Drawing.Point(222, 53)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(50, 16)
         Me.Label6.TabIndex = 126
@@ -301,7 +303,7 @@ Partial Class frmMain
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(199, 27)
+        Me.Label5.Location = New System.Drawing.Point(222, 27)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(39, 16)
         Me.Label5.TabIndex = 125
@@ -309,73 +311,81 @@ Partial Class frmMain
         '
         'txtResult8
         '
-        Me.txtResult8.Location = New System.Drawing.Point(8, 207)
+        Me.txtResult8.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult8.Location = New System.Drawing.Point(5, 207)
         Me.txtResult8.Name = "txtResult8"
         Me.txtResult8.ReadOnly = True
-        Me.txtResult8.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult8.Size = New System.Drawing.Size(211, 22)
         Me.txtResult8.TabIndex = 121
         Me.txtResult8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtResult7
         '
-        Me.txtResult7.Location = New System.Drawing.Point(8, 181)
+        Me.txtResult7.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult7.Location = New System.Drawing.Point(5, 181)
         Me.txtResult7.Name = "txtResult7"
         Me.txtResult7.ReadOnly = True
-        Me.txtResult7.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult7.Size = New System.Drawing.Size(211, 22)
         Me.txtResult7.TabIndex = 120
         Me.txtResult7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtResult6
         '
-        Me.txtResult6.Location = New System.Drawing.Point(8, 155)
+        Me.txtResult6.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult6.Location = New System.Drawing.Point(5, 155)
         Me.txtResult6.Name = "txtResult6"
         Me.txtResult6.ReadOnly = True
-        Me.txtResult6.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult6.Size = New System.Drawing.Size(211, 22)
         Me.txtResult6.TabIndex = 119
         Me.txtResult6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtResult5
         '
-        Me.txtResult5.Location = New System.Drawing.Point(8, 129)
+        Me.txtResult5.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult5.Location = New System.Drawing.Point(5, 129)
         Me.txtResult5.Name = "txtResult5"
         Me.txtResult5.ReadOnly = True
-        Me.txtResult5.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult5.Size = New System.Drawing.Size(211, 22)
         Me.txtResult5.TabIndex = 118
         Me.txtResult5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtResult4
         '
-        Me.txtResult4.Location = New System.Drawing.Point(8, 103)
+        Me.txtResult4.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult4.Location = New System.Drawing.Point(5, 103)
         Me.txtResult4.Name = "txtResult4"
         Me.txtResult4.ReadOnly = True
-        Me.txtResult4.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult4.Size = New System.Drawing.Size(211, 22)
         Me.txtResult4.TabIndex = 117
         Me.txtResult4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtResult3
         '
-        Me.txtResult3.Location = New System.Drawing.Point(8, 77)
+        Me.txtResult3.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult3.Location = New System.Drawing.Point(5, 77)
         Me.txtResult3.Name = "txtResult3"
         Me.txtResult3.ReadOnly = True
-        Me.txtResult3.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult3.Size = New System.Drawing.Size(211, 22)
         Me.txtResult3.TabIndex = 116
         Me.txtResult3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtResult2
         '
-        Me.txtResult2.Location = New System.Drawing.Point(8, 51)
+        Me.txtResult2.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult2.Location = New System.Drawing.Point(5, 51)
         Me.txtResult2.Name = "txtResult2"
         Me.txtResult2.ReadOnly = True
-        Me.txtResult2.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult2.Size = New System.Drawing.Size(211, 22)
         Me.txtResult2.TabIndex = 115
         Me.txtResult2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtResult1
         '
-        Me.txtResult1.Location = New System.Drawing.Point(8, 25)
+        Me.txtResult1.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtResult1.Location = New System.Drawing.Point(5, 25)
         Me.txtResult1.Name = "txtResult1"
         Me.txtResult1.ReadOnly = True
-        Me.txtResult1.Size = New System.Drawing.Size(185, 20)
+        Me.txtResult1.Size = New System.Drawing.Size(211, 22)
         Me.txtResult1.TabIndex = 114
         Me.txtResult1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -394,7 +404,7 @@ Partial Class frmMain
         '
         Me.btnCalculator.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCalculator.ForeColor = System.Drawing.Color.Black
-        Me.btnCalculator.Location = New System.Drawing.Point(237, 24)
+        Me.btnCalculator.Location = New System.Drawing.Point(260, 24)
         Me.btnCalculator.Name = "btnCalculator"
         Me.btnCalculator.Size = New System.Drawing.Size(87, 26)
         Me.btnCalculator.TabIndex = 116
@@ -406,9 +416,9 @@ Partial Class frmMain
         '
         Me.btnFile.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFile.ForeColor = System.Drawing.Color.Black
-        Me.btnFile.Location = New System.Drawing.Point(129, 24)
+        Me.btnFile.Location = New System.Drawing.Point(137, 24)
         Me.btnFile.Name = "btnFile"
-        Me.btnFile.Size = New System.Drawing.Size(44, 26)
+        Me.btnFile.Size = New System.Drawing.Size(52, 26)
         Me.btnFile.TabIndex = 117
         Me.btnFile.Text = "File"
         Me.btnFile.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -423,7 +433,7 @@ Partial Class frmMain
         '
         Me.btnFolder.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFolder.ForeColor = System.Drawing.Color.Black
-        Me.btnFolder.Location = New System.Drawing.Point(179, 24)
+        Me.btnFolder.Location = New System.Drawing.Point(193, 24)
         Me.btnFolder.Name = "btnFolder"
         Me.btnFolder.Size = New System.Drawing.Size(52, 26)
         Me.btnFolder.TabIndex = 118
@@ -436,7 +446,7 @@ Partial Class frmMain
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label15.Location = New System.Drawing.Point(152, 7)
+        Me.Label15.Location = New System.Drawing.Point(166, 7)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(55, 16)
         Me.Label15.TabIndex = 119
@@ -447,7 +457,7 @@ Partial Class frmMain
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label16.Location = New System.Drawing.Point(252, 7)
+        Me.Label16.Location = New System.Drawing.Point(275, 7)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(42, 16)
         Me.Label16.TabIndex = 120
@@ -465,7 +475,7 @@ Partial Class frmMain
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.AliceBlue
-        Me.ClientSize = New System.Drawing.Size(330, 437)
+        Me.ClientSize = New System.Drawing.Size(354, 437)
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.Label15)
@@ -483,8 +493,8 @@ Partial Class frmMain
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(346, 476)
-        Me.MinimumSize = New System.Drawing.Size(346, 430)
+        Me.MaximumSize = New System.Drawing.Size(370, 476)
+        Me.MinimumSize = New System.Drawing.Size(370, 430)
         Me.Name = "frmMain"
         Me.Padding = New System.Windows.Forms.Padding(0, 0, 0, 4)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

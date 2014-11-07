@@ -165,11 +165,11 @@ Public Class frmMain
     End Sub
 
     Private Sub btnFile_Click(sender As Object, e As EventArgs) Handles btnFile.Click
+        txtInputValue.Text = 0
         If (OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK) Then
             Dim totalFileSize As Long = 0
-            For Each fileName As String In OpenFileDialog1.FileNames
-                totalFileSize += New FileInfo(fileName).Length.ToString()
-            Next
+            Dim selectedFileNames As String() = OpenFileDialog1.FileNames
+            totalFileSize = getAllFileSizes(selectedFileNames)
             cmbConvType.SelectedIndex = 1
             cmbInputUnit.SelectedIndex = 1 'File Size is always read as Bytes
             txtInputValue.Text = totalFileSize
@@ -177,19 +177,14 @@ Public Class frmMain
     End Sub
 
     Private Sub btnFolder_Click(sender As Object, e As EventArgs) Handles btnFolder.Click
+        txtInputValue.Text = 0
         If (FolderBrowserDialog1.ShowDialog() = Windows.Forms.DialogResult.OK) Then
-            Dim parentDirSize As Long = 0
-            'To get the details of any directory, DirectoryInfo Class is used
-
-            'This is the parent directory chosen by the user
-            Dim parentDirInfo As DirectoryInfo = New DirectoryInfo(FolderBrowserDialog1.SelectedPath)
-            'Recursive reading of directory, to get the size of all sub-directories and its files
-            parentDirSize = getFileSizes(parentDirSize, parentDirInfo)
-
-            'After finalizing the directory size, set it as the input (in Bytes) for conversion
+            Dim totalFolderSize As Long = 0
+            Dim selectedDirPath As String = FolderBrowserDialog1.SelectedPath
+            totalFolderSize = getAllFolderSizes(selectedDirPath)
             cmbConvType.SelectedIndex = 1
             cmbInputUnit.SelectedIndex = 1 'File Size is always read as Bytes
-            txtInputValue.Text = parentDirSize
+            txtInputValue.Text = totalFolderSize
         End If
     End Sub
 
@@ -197,31 +192,31 @@ Public Class frmMain
 
 #Region "All Methods"
 
-    Private Function getFileSizes(CurrentSize As Long, currentDirInfo As DirectoryInfo) As Long
-        'First read all the files in this directory
-        If (currentDirInfo.Attributes And FileAttributes.ReadOnly) > 0 Then
-            Return CurrentSize
-        End If
+    Private Function getAllFileSizes(ByVal fileNamesArr As String()) As Long
+        For Each fileName As String In fileNamesArr
+            Try
+                getAllFileSizes += New FileInfo(fileName).Length.ToString()
+            Catch ex As Exception
+                'Do Nothing
+            End Try
+        Next
+        Return getAllFileSizes
+    End Function
 
-        Try 'To handle Access Denied Errors
-            For Each fileName As FileInfo In currentDirInfo.GetFiles
-                CurrentSize += fileName.Length
-            Next
-        Catch ex As Exception
-            'Do Nothing
-        End Try
-
+    Private Function getAllFolderSizes(ByVal dirPath As String) As Long
         Try
-            'Check if sub-directories exist, if they do then recursively read their file sizes as well
-            For Each subDirInfo As DirectoryInfo In currentDirInfo.GetDirectories
-                'Only the FILE sizes are taken into account, so '+=' operator SHOULD NOT BE used here for directories
-                CurrentSize = getFileSizes(CurrentSize, subDirInfo)
+            'First get the size of the files in this directory
+            Dim fileNamesArr As String() = Directory.GetFiles(dirPath)
+            getAllFolderSizes = getAllFileSizes(fileNamesArr)
+            'Then recursively walk through its subdirectories
+            'Check if sub-directories exist, if they do, then recursively read their file sizes as well
+            For Each subDirPath As String In Directory.GetDirectories(dirPath)
+                getAllFolderSizes += getAllFolderSizes(subDirPath)
             Next
         Catch ex As Exception
             'Do Nothing
         End Try
-
-        Return CurrentSize
+        Return getAllFolderSizes
     End Function
 
     Private Sub ResetFeilds()
@@ -427,7 +422,6 @@ Public Class frmMain
     End Function
 
 #End Region
-
 
 End Class
 
