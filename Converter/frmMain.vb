@@ -77,28 +77,6 @@ Public Class frmMain
         isProcessAlreadyOpen()
     End Sub
 
-    Private Sub btnCalculator_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-    Handles btnCalculator.Click
-        Try
-            If isProcessAlreadyOpen() = True Then
-                myProcessHandle = myProcess.MainWindowHandle.ToInt64
-                OpenIcon(myProcessHandle) 'Restores the program.
-                SetForegroundWindow(myProcessHandle) 'Activates the program.
-            Else
-                If System.IO.File.Exists(System.Environment.SystemDirectory + "\calc.exe") = True Then
-                    myProcess.StartInfo.FileName = "calc"
-                    myProcess.StartInfo.ErrorDialog = True
-                    myProcess = System.Diagnostics.Process.Start(myProcess.StartInfo)
-                    myProcess.EnableRaisingEvents = True
-                Else
-                    MsgBox("Windows Calulator is not installed")
-                End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.ToString)
-        End Try
-    End Sub
-
     Private Sub myProcess_ProcessExited(ByVal sender As Object, ByVal e As System.EventArgs) _
     Handles myProcess.Exited
         'MessageBox.Show("The process exited, raising the Exited event at: " & myProcess.ExitTime & "." _
@@ -124,9 +102,7 @@ Public Class frmMain
 
     Private Sub AboutToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles AboutToolStripMenuItem.Click
-        Me.Enabled = False
-        frmAbout.Show()
-        frmAbout.Focus()
+        showAboutForm()
     End Sub
 
     Private Sub CloseToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
@@ -164,6 +140,28 @@ Public Class frmMain
         End If
     End Sub
 
+    Private Sub btnCalculator_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+    Handles btnCalculator.Click
+        Try
+            If isProcessAlreadyOpen() = True Then
+                myProcessHandle = myProcess.MainWindowHandle.ToInt64
+                OpenIcon(myProcessHandle) 'Restores the program.
+                SetForegroundWindow(myProcessHandle) 'Activates the program.
+            Else
+                If System.IO.File.Exists(System.Environment.SystemDirectory + "\calc.exe") = True Then
+                    myProcess.StartInfo.FileName = "calc"
+                    myProcess.StartInfo.ErrorDialog = True
+                    myProcess = System.Diagnostics.Process.Start(myProcess.StartInfo)
+                    myProcess.EnableRaisingEvents = True
+                Else
+                    MsgBox("Windows Calulator is not installed")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
     Private Sub btnFile_Click(sender As Object, e As EventArgs) Handles btnFile.Click
         txtInputValue.Text = 0
         If (OpenFileDialog1.ShowDialog() = Windows.Forms.DialogResult.OK) Then
@@ -186,6 +184,54 @@ Public Class frmMain
             cmbInputUnit.SelectedIndex = 1 'File Size is always read as Bytes
             txtInputValue.Text = totalFolderSize
         End If
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Dim outTypeArr As String()
+        If (cmbConvType.SelectedIndex = 0) Then
+            outTypeArr = decimalArray 'output units are in decimal format
+        Else
+            outTypeArr = binaryArray 'output units are in binary format
+        End If
+
+        Dim strResults As New System.Text.StringBuilder
+        strResults.AppendLine("Conversion Type is (" & cmbConvType.Text & ")" & vbNewLine)
+        strResults.AppendLine("Input: " & txtInputValue.Text & " " & cmbInputUnit.SelectedItem & vbNewLine)
+        strResults.AppendLine("Output:")
+        strResults.AppendLine(outTypeArr(0) & vbTab & vbTab & vbTab & " = " & txtBits.Text)
+        strResults.AppendLine(outTypeArr(1) & vbTab & vbTab & vbTab & " = " & txtBytes.Text)
+        strResults.AppendLine(outTypeArr(2) & " = " & txtKB.Text)
+        strResults.AppendLine(outTypeArr(3) & " = " & txtMB.Text)
+        strResults.AppendLine(outTypeArr(4) & " = " & txtGB.Text)
+        strResults.AppendLine(outTypeArr(5) & " = " & txtTB.Text)
+        strResults.AppendLine(outTypeArr(6) & " = " & txtPB.Text)
+        strResults.AppendLine(outTypeArr(7) & " = " & txtEB.Text)
+        strResults.AppendLine(outTypeArr(8) & " = " & txtZB.Text)
+        strResults.AppendLine(outTypeArr(9) & " = " & txtYB.Text)
+
+        Dim fPath As String = Environment.CurrentDirectory + "\ByteConverterResults.txt"
+        If (SaveTextToFile(strResults.ToString, fPath) = True) Then
+            System.Diagnostics.Process.Start(fPath)
+        End If
+    End Sub
+
+    Private Sub btnContact_Click(sender As Object, e As EventArgs) Handles btnAbout.Click
+        showAboutForm()
+    End Sub
+
+    Private Sub pbox_MouseEnter(sender As Object, e As EventArgs) _
+    Handles pBoxZB.MouseEnter, pBoxYB.MouseEnter, pBoxTB.MouseEnter, pBoxPB.MouseEnter, _
+    pBoxMB.MouseEnter, pBoxKB.MouseEnter, pBoxGB.MouseEnter, pBoxEB.MouseEnter, pBoxBytes.MouseEnter, pBoxBits.MouseEnter
+        Dim pBox As PictureBox = DirectCast(sender, PictureBox)
+        pBox.Size = New System.Drawing.Size(25, 22)
+        ToolTip1.SetToolTip(pBox, "Copy To Clipboard")
+    End Sub
+
+    Private Sub pbox_MouseLeave(sender As Object, e As EventArgs) _
+    Handles pBoxZB.MouseLeave, pBoxYB.MouseLeave, pBoxTB.MouseLeave, pBoxPB.MouseLeave, _
+    pBoxMB.MouseLeave, pBoxKB.MouseLeave, pBoxGB.MouseLeave, pBoxEB.MouseLeave, pBoxBytes.MouseLeave, pBoxBits.MouseLeave
+        Dim pBox As PictureBox = DirectCast(sender, PictureBox)
+        pBox.Size = New System.Drawing.Size(22, 22)
     End Sub
 
 #End Region
@@ -248,14 +294,14 @@ Public Class frmMain
         cmbInputUnit.Items.Clear()
 
         If cmbConvType.SelectedIndex = 0 Then
-            Label7.Text = decimalArray(2)
-            Label8.Text = decimalArray(3)
-            Label9.Text = decimalArray(4)
-            Label10.Text = decimalArray(5)
-            Label11.Text = decimalArray(6)
-            Label12.Text = decimalArray(7)
-            Label13.Text = decimalArray(8)
-            Label14.Text = decimalArray(9)
+            lblKB.Text = decimalArray(2)
+            lblMB.Text = decimalArray(3)
+            lblGB.Text = decimalArray(4)
+            lblTB.Text = decimalArray(5)
+            lblPB.Text = decimalArray(6)
+            lblEB.Text = decimalArray(7)
+            lblZB.Text = decimalArray(8)
+            lblYB.Text = decimalArray(9)
             cmbInputUnit.Items.Add(decimalArray(0))
             cmbInputUnit.Items.Add(decimalArray(1))
             cmbInputUnit.Items.Add(decimalArray(2))
@@ -267,14 +313,14 @@ Public Class frmMain
             cmbInputUnit.Items.Add(decimalArray(8))
             cmbInputUnit.Items.Add(decimalArray(9))
         Else
-            Label7.Text = binaryArray(2)
-            Label8.Text = binaryArray(3)
-            Label9.Text = binaryArray(4)
-            Label10.Text = binaryArray(5)
-            Label11.Text = binaryArray(6)
-            Label12.Text = binaryArray(7)
-            Label13.Text = binaryArray(8)
-            Label14.Text = binaryArray(9)
+            lblKB.Text = binaryArray(2)
+            lblMB.Text = binaryArray(3)
+            lblGB.Text = binaryArray(4)
+            lblTB.Text = binaryArray(5)
+            lblPB.Text = binaryArray(6)
+            lblEB.Text = binaryArray(7)
+            lblZB.Text = binaryArray(8)
+            lblYB.Text = binaryArray(9)
             cmbInputUnit.Items.Add(binaryArray(0))
             cmbInputUnit.Items.Add(binaryArray(1))
             cmbInputUnit.Items.Add(binaryArray(2))
@@ -375,31 +421,31 @@ Public Class frmMain
     Private Sub CalcAndDispResults()
         Try
             If (input = 0) Then
-                txtResult1.Text = "0"
-                txtResult2.Text = "0"
-                txtResult3.Text = "0"
-                txtResult4.Text = "0"
-                txtResult5.Text = "0"
-                txtResult6.Text = "0"
-                txtResult7.Text = "0"
-                txtResult8.Text = "0"
-                txtResult9.Text = "0"
-                txtResult10.Text = "0"
+                txtBits.Text = "0"
+                txtBytes.Text = "0"
+                txtKB.Text = "0"
+                txtMB.Text = "0"
+                txtGB.Text = "0"
+                txtTB.Text = "0"
+                txtPB.Text = "0"
+                txtEB.Text = "0"
+                txtZB.Text = "0"
+                txtYB.Text = "0"
             Else
-                txtResult1.Text = input.ToString
-                txtResult2.Text = (input / 8).ToString
-                txtResult3.Text = (input / (8 * convType)).ToString
-                txtResult4.Text = (input / (8 * (convType ^ 2))).ToString
-                txtResult5.Text = (input / (8 * (convType ^ 3))).ToString
-                txtResult6.Text = (input / (8 * (convType ^ 4))).ToString
-                txtResult7.Text = (input / (8 * (convType ^ 5))).ToString
-                txtResult8.Text = (input / (8 * (convType ^ 6))).ToString
-                txtResult9.Text = (input / (8 * (convType ^ 7))).ToString
-                txtResult10.Text = (input / (8 * (convType ^ 8))).ToString
+                txtBits.Text = input.ToString
+                txtBytes.Text = (input / 8).ToString
+                txtKB.Text = (input / (8 * convType)).ToString
+                txtMB.Text = (input / (8 * (convType ^ 2))).ToString
+                txtGB.Text = (input / (8 * (convType ^ 3))).ToString
+                txtTB.Text = (input / (8 * (convType ^ 4))).ToString
+                txtPB.Text = (input / (8 * (convType ^ 5))).ToString
+                txtEB.Text = (input / (8 * (convType ^ 6))).ToString
+                txtZB.Text = (input / (8 * (convType ^ 7))).ToString
+                txtYB.Text = (input / (8 * (convType ^ 8))).ToString
 
                 ' Clears the lblError.text, when the input is valid, thus, triggering the lblError.Textchanged event.
-                If (txtInputValue.Text <> "" And txtResult1.Text <> "0") _
-                Or (CDbl(txtInputValue.Text) = 0.0 And txtResult1.Text = "0" And Not txtInputValue.Text.EndsWith(".")) Then
+                If (txtInputValue.Text <> "" And txtBits.Text <> "0") _
+                Or (CDbl(txtInputValue.Text) = 0.0 And txtBits.Text = "0" And Not txtInputValue.Text.EndsWith(".")) Then
                     lblError.Text = ""
                 End If
             End If
@@ -421,8 +467,76 @@ Public Class frmMain
         End If
     End Function
 
+    Private Sub showAboutForm()
+        Me.Enabled = False
+        frmAbout.Show()
+        frmAbout.Focus()
+    End Sub
+
+    Public Function SaveTextToFile(ByVal textToBeSaved As String, ByVal filePath As String) As Boolean
+        Dim blnHasSaveSucceeded As Boolean = False
+        Dim objStreamWriter As StreamWriter
+        Try
+            If File.Exists(filePath) = False Then File.Create(filePath).Close()
+            objStreamWriter = New StreamWriter(filePath)
+            objStreamWriter.Write(textToBeSaved)
+            objStreamWriter.Close()
+            blnHasSaveSucceeded = True
+        Catch Ex As Exception
+            MsgBox(Ex.Message, MsgBoxStyle.Critical)
+        End Try
+        Return blnHasSaveSucceeded
+    End Function
+
 #End Region
 
+    Private Sub pbBox_MouseDown(sender As Object, e As EventArgs) _
+    Handles pBoxZB.MouseDown, pBoxYB.MouseDown, pBoxTB.MouseDown, pBoxPB.MouseDown, _
+    pBoxMB.MouseDown, pBoxKB.MouseDown, pBoxGB.MouseDown, pBoxEB.MouseDown, pBoxBytes.MouseDown, pBoxBits.MouseDown
+
+        'Copy individual results to clipboard
+        Dim pBox As PictureBox = DirectCast(sender, PictureBox)
+        pBox.BorderStyle = BorderStyle.Fixed3D
+        Select Case pBox.Name
+            Case pBoxBits.Name
+                My.Computer.Clipboard.SetText(txtBits.Text)
+            Case pBoxBytes.Name
+                My.Computer.Clipboard.SetText(txtBytes.Text)
+            Case pBoxKB.Name
+                My.Computer.Clipboard.SetText(txtKB.Text)
+            Case pBoxMB.Name
+                My.Computer.Clipboard.SetText(txtMB.Text)
+            Case pBoxGB.Name
+                My.Computer.Clipboard.SetText(txtGB.Text)
+            Case pBoxTB.Name
+                My.Computer.Clipboard.SetText(txtTB.Text)
+            Case pBoxPB.Name
+                My.Computer.Clipboard.SetText(txtPB.Text)
+            Case pBoxEB.Name
+                My.Computer.Clipboard.SetText(txtEB.Text)
+            Case pBoxZB.Name
+                My.Computer.Clipboard.SetText(txtZB.Text)
+            Case pBoxYB.Name
+                My.Computer.Clipboard.SetText(txtYB.Text)
+        End Select
+    End Sub
+
+    Private Sub pbBox_MouseUp(sender As Object, e As MouseEventArgs) Handles pBoxZB.MouseUp, pBoxYB.MouseUp, pBoxTB.MouseUp, pBoxPB.MouseUp, pBoxMB.MouseUp, pBoxKB.MouseUp, pBoxGB.MouseUp, pBoxEB.MouseUp, pBoxBytes.MouseUp, pBoxBits.MouseUp
+        Dim pBox As PictureBox = DirectCast(sender, PictureBox)
+        pBox.BorderStyle = BorderStyle.FixedSingle
+    End Sub
+
+    Private Sub btnIcons_MouseEnter(sender As Object, e As EventArgs) _
+    Handles btnSave.MouseEnter, btnFolder.MouseEnter, btnFile.MouseEnter, btnCalculator.MouseEnter, btnAbout.MouseEnter
+        Dim btn As Button = DirectCast(sender, Button)
+        btn.Size = New System.Drawing.Size(36, 36)
+    End Sub
+
+    Private Sub btnIcons_MouseLeave(sender As Object, e As EventArgs) _
+    Handles btnSave.MouseLeave, btnFolder.MouseLeave, btnFile.MouseLeave, btnCalculator.MouseLeave, btnAbout.MouseLeave
+        Dim btn As Button = DirectCast(sender, Button)
+        btn.Size = New System.Drawing.Size(32, 32)
+    End Sub
 End Class
 
 #End Region
