@@ -73,16 +73,6 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property clipboard_small() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("clipboard_small", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
         Friend ReadOnly Property clipboard_very_small() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("clipboard_very_small", resourceCulture)
@@ -116,16 +106,6 @@ Namespace My.Resources
         Friend ReadOnly Property mail_small() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("mail_small", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property plus_small() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("plus_small", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

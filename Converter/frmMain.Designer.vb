@@ -21,17 +21,17 @@ Partial Class frmMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblInputValue = New System.Windows.Forms.Label()
         Me.txtInputValue = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmbInputUnit = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblInputUnit = New System.Windows.Forms.Label()
+        Me.lblConvType = New System.Windows.Forms.Label()
         Me.cmbConvType = New System.Windows.Forms.ComboBox()
         Me.lblError = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.panelResults = New System.Windows.Forms.Panel()
         Me.pBoxYB = New System.Windows.Forms.PictureBox()
         Me.pBoxZB = New System.Windows.Forms.PictureBox()
         Me.pBoxEB = New System.Windows.Forms.PictureBox()
@@ -62,7 +62,7 @@ Partial Class frmMain
         Me.txtKB = New System.Windows.Forms.TextBox()
         Me.txtBytes = New System.Windows.Forms.TextBox()
         Me.txtBits = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblResults = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.btnAbout = New System.Windows.Forms.Button()
@@ -72,7 +72,7 @@ Partial Class frmMain
         Me.btnCalculator = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ContextMenuStrip1.SuspendLayout()
-        Me.Panel1.SuspendLayout()
+        Me.panelResults.SuspendLayout()
         CType(Me.pBoxYB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pBoxZB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pBoxEB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,25 +85,25 @@ Partial Class frmMain
         CType(Me.pBoxBits, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'Label1
+        'lblInputValue
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(12, 62)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(146, 16)
-        Me.Label1.TabIndex = 100
-        Me.Label1.Text = "Input value to convert"
+        Me.lblInputValue.AutoSize = True
+        Me.lblInputValue.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblInputValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblInputValue.Location = New System.Drawing.Point(9, 63)
+        Me.lblInputValue.Name = "lblInputValue"
+        Me.lblInputValue.Size = New System.Drawing.Size(146, 16)
+        Me.lblInputValue.TabIndex = 100
+        Me.lblInputValue.Text = "Input value to convert"
         '
         'txtInputValue
         '
         Me.txtInputValue.AllowDrop = True
         Me.txtInputValue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtInputValue.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtInputValue.Location = New System.Drawing.Point(12, 78)
+        Me.txtInputValue.Location = New System.Drawing.Point(9, 79)
         Me.txtInputValue.Name = "txtInputValue"
-        Me.txtInputValue.Size = New System.Drawing.Size(219, 22)
+        Me.txtInputValue.Size = New System.Drawing.Size(224, 22)
         Me.txtInputValue.TabIndex = 2
         Me.txtInputValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -117,7 +117,7 @@ Partial Class frmMain
         '
         Me.AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "About..."
         '
         'CloseToolStripMenuItem
@@ -133,32 +133,32 @@ Partial Class frmMain
         Me.cmbInputUnit.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbInputUnit.FormattingEnabled = True
         Me.cmbInputUnit.Items.AddRange(New Object() {"Bit", "Byte", "Kilo Byte", "Mega Byte", "Giga Byte", "Tera Byte", "Peta byte", "Exa byte"})
-        Me.cmbInputUnit.Location = New System.Drawing.Point(236, 78)
+        Me.cmbInputUnit.Location = New System.Drawing.Point(238, 79)
         Me.cmbInputUnit.Name = "cmbInputUnit"
-        Me.cmbInputUnit.Size = New System.Drawing.Size(117, 23)
+        Me.cmbInputUnit.Size = New System.Drawing.Size(107, 23)
         Me.cmbInputUnit.TabIndex = 3
         '
-        'Label2
+        'lblInputUnit
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(232, 62)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 16)
-        Me.Label2.TabIndex = 101
-        Me.Label2.Text = "Input Unit"
+        Me.lblInputUnit.AutoSize = True
+        Me.lblInputUnit.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblInputUnit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblInputUnit.Location = New System.Drawing.Point(235, 63)
+        Me.lblInputUnit.Name = "lblInputUnit"
+        Me.lblInputUnit.Size = New System.Drawing.Size(69, 16)
+        Me.lblInputUnit.TabIndex = 101
+        Me.lblInputUnit.Text = "Input Unit"
         '
-        'Label3
+        'lblConvType
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(9, 10)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(113, 16)
-        Me.Label3.TabIndex = 102
-        Me.Label3.Text = "Conversion Type"
+        Me.lblConvType.AutoSize = True
+        Me.lblConvType.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblConvType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblConvType.Location = New System.Drawing.Point(6, 11)
+        Me.lblConvType.Name = "lblConvType"
+        Me.lblConvType.Size = New System.Drawing.Size(113, 16)
+        Me.lblConvType.TabIndex = 102
+        Me.lblConvType.Text = "Conversion Type"
         '
         'cmbConvType
         '
@@ -166,7 +166,7 @@ Partial Class frmMain
         Me.cmbConvType.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbConvType.FormattingEnabled = True
         Me.cmbConvType.Items.AddRange(New Object() {"1000 - Decimal", "1024 - Binary"})
-        Me.cmbConvType.Location = New System.Drawing.Point(9, 26)
+        Me.cmbConvType.Location = New System.Drawing.Point(9, 27)
         Me.cmbConvType.Name = "cmbConvType"
         Me.cmbConvType.Size = New System.Drawing.Size(110, 23)
         Me.cmbConvType.TabIndex = 1
@@ -176,49 +176,49 @@ Partial Class frmMain
         Me.lblError.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblError.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblError.ForeColor = System.Drawing.Color.Red
-        Me.lblError.Location = New System.Drawing.Point(12, 391)
+        Me.lblError.Location = New System.Drawing.Point(9, 392)
         Me.lblError.Name = "lblError"
         Me.lblError.Size = New System.Drawing.Size(341, 40)
         Me.lblError.TabIndex = 114
         Me.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Panel1
+        'panelResults
         '
-        Me.Panel1.Controls.Add(Me.pBoxYB)
-        Me.Panel1.Controls.Add(Me.pBoxZB)
-        Me.Panel1.Controls.Add(Me.pBoxEB)
-        Me.Panel1.Controls.Add(Me.pBoxPB)
-        Me.Panel1.Controls.Add(Me.pBoxTB)
-        Me.Panel1.Controls.Add(Me.pBoxGB)
-        Me.Panel1.Controls.Add(Me.pBoxMB)
-        Me.Panel1.Controls.Add(Me.pBoxKB)
-        Me.Panel1.Controls.Add(Me.pBoxBytes)
-        Me.Panel1.Controls.Add(Me.pBoxBits)
-        Me.Panel1.Controls.Add(Me.lblYB)
-        Me.Panel1.Controls.Add(Me.txtYB)
-        Me.Panel1.Controls.Add(Me.lblZB)
-        Me.Panel1.Controls.Add(Me.txtZB)
-        Me.Panel1.Controls.Add(Me.lblEB)
-        Me.Panel1.Controls.Add(Me.lblPB)
-        Me.Panel1.Controls.Add(Me.lblTB)
-        Me.Panel1.Controls.Add(Me.lblGB)
-        Me.Panel1.Controls.Add(Me.lblMB)
-        Me.Panel1.Controls.Add(Me.lblKB)
-        Me.Panel1.Controls.Add(Me.lblBytes)
-        Me.Panel1.Controls.Add(Me.lblBits)
-        Me.Panel1.Controls.Add(Me.txtEB)
-        Me.Panel1.Controls.Add(Me.txtPB)
-        Me.Panel1.Controls.Add(Me.txtTB)
-        Me.Panel1.Controls.Add(Me.txtGB)
-        Me.Panel1.Controls.Add(Me.txtMB)
-        Me.Panel1.Controls.Add(Me.txtKB)
-        Me.Panel1.Controls.Add(Me.txtBytes)
-        Me.Panel1.Controls.Add(Me.txtBits)
-        Me.Panel1.Controls.Add(Me.Label4)
-        Me.Panel1.Location = New System.Drawing.Point(7, 105)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(346, 282)
-        Me.Panel1.TabIndex = 115
+        Me.panelResults.Controls.Add(Me.pBoxYB)
+        Me.panelResults.Controls.Add(Me.pBoxZB)
+        Me.panelResults.Controls.Add(Me.pBoxEB)
+        Me.panelResults.Controls.Add(Me.pBoxPB)
+        Me.panelResults.Controls.Add(Me.pBoxTB)
+        Me.panelResults.Controls.Add(Me.pBoxGB)
+        Me.panelResults.Controls.Add(Me.pBoxMB)
+        Me.panelResults.Controls.Add(Me.pBoxKB)
+        Me.panelResults.Controls.Add(Me.pBoxBytes)
+        Me.panelResults.Controls.Add(Me.pBoxBits)
+        Me.panelResults.Controls.Add(Me.lblYB)
+        Me.panelResults.Controls.Add(Me.txtYB)
+        Me.panelResults.Controls.Add(Me.lblZB)
+        Me.panelResults.Controls.Add(Me.txtZB)
+        Me.panelResults.Controls.Add(Me.lblEB)
+        Me.panelResults.Controls.Add(Me.lblPB)
+        Me.panelResults.Controls.Add(Me.lblTB)
+        Me.panelResults.Controls.Add(Me.lblGB)
+        Me.panelResults.Controls.Add(Me.lblMB)
+        Me.panelResults.Controls.Add(Me.lblKB)
+        Me.panelResults.Controls.Add(Me.lblBytes)
+        Me.panelResults.Controls.Add(Me.lblBits)
+        Me.panelResults.Controls.Add(Me.txtEB)
+        Me.panelResults.Controls.Add(Me.txtPB)
+        Me.panelResults.Controls.Add(Me.txtTB)
+        Me.panelResults.Controls.Add(Me.txtGB)
+        Me.panelResults.Controls.Add(Me.txtMB)
+        Me.panelResults.Controls.Add(Me.txtKB)
+        Me.panelResults.Controls.Add(Me.txtBytes)
+        Me.panelResults.Controls.Add(Me.txtBits)
+        Me.panelResults.Controls.Add(Me.lblResults)
+        Me.panelResults.Location = New System.Drawing.Point(4, 106)
+        Me.panelResults.Name = "panelResults"
+        Me.panelResults.Size = New System.Drawing.Size(346, 282)
+        Me.panelResults.TabIndex = 115
         '
         'pBoxYB
         '
@@ -530,16 +530,16 @@ Partial Class frmMain
         Me.txtBits.TabIndex = 114
         Me.txtBits.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'Label4
+        'lblResults
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Green
-        Me.Label4.Location = New System.Drawing.Point(66, 3)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(67, 19)
-        Me.Label4.TabIndex = 124
-        Me.Label4.Text = "Results"
+        Me.lblResults.AutoSize = True
+        Me.lblResults.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblResults.ForeColor = System.Drawing.Color.Green
+        Me.lblResults.Location = New System.Drawing.Point(66, 3)
+        Me.lblResults.Name = "lblResults"
+        Me.lblResults.Size = New System.Drawing.Size(67, 19)
+        Me.lblResults.TabIndex = 124
+        Me.lblResults.Text = "Results"
         '
         'OpenFileDialog1
         '
@@ -559,7 +559,7 @@ Partial Class frmMain
         Me.btnAbout.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAbout.ForeColor = System.Drawing.Color.Black
         Me.btnAbout.Image = Global.Converter.My.Resources.Resources.mail_small
-        Me.btnAbout.Location = New System.Drawing.Point(315, 17)
+        Me.btnAbout.Location = New System.Drawing.Point(313, 18)
         Me.btnAbout.Name = "btnAbout"
         Me.btnAbout.Size = New System.Drawing.Size(32, 32)
         Me.btnAbout.TabIndex = 122
@@ -575,7 +575,7 @@ Partial Class frmMain
         Me.btnSave.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.Black
         Me.btnSave.Image = Global.Converter.My.Resources.Resources.save_small
-        Me.btnSave.Location = New System.Drawing.Point(278, 17)
+        Me.btnSave.Location = New System.Drawing.Point(276, 18)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(32, 32)
         Me.btnSave.TabIndex = 121
@@ -591,7 +591,7 @@ Partial Class frmMain
         Me.btnFolder.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFolder.ForeColor = System.Drawing.Color.Black
         Me.btnFolder.Image = Global.Converter.My.Resources.Resources.folder_small
-        Me.btnFolder.Location = New System.Drawing.Point(241, 17)
+        Me.btnFolder.Location = New System.Drawing.Point(239, 18)
         Me.btnFolder.Name = "btnFolder"
         Me.btnFolder.Size = New System.Drawing.Size(32, 32)
         Me.btnFolder.TabIndex = 118
@@ -607,7 +607,7 @@ Partial Class frmMain
         Me.btnFile.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFile.ForeColor = System.Drawing.Color.Black
         Me.btnFile.Image = Global.Converter.My.Resources.Resources.file_small
-        Me.btnFile.Location = New System.Drawing.Point(204, 17)
+        Me.btnFile.Location = New System.Drawing.Point(202, 18)
         Me.btnFile.Name = "btnFile"
         Me.btnFile.Size = New System.Drawing.Size(32, 32)
         Me.btnFile.TabIndex = 117
@@ -623,7 +623,7 @@ Partial Class frmMain
         Me.btnCalculator.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCalculator.ForeColor = System.Drawing.Color.Black
         Me.btnCalculator.Image = Global.Converter.My.Resources.Resources.calc_small
-        Me.btnCalculator.Location = New System.Drawing.Point(167, 17)
+        Me.btnCalculator.Location = New System.Drawing.Point(165, 18)
         Me.btnCalculator.Name = "btnCalculator"
         Me.btnCalculator.Size = New System.Drawing.Size(32, 32)
         Me.btnCalculator.TabIndex = 123
@@ -633,12 +633,13 @@ Partial Class frmMain
         '
         'frmMain
         '
+        Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.AliceBlue
-        Me.ClientSize = New System.Drawing.Size(359, 437)
+        Me.ClientSize = New System.Drawing.Size(359, 440)
         Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.btnCalculator)
         Me.Controls.Add(Me.btnAbout)
@@ -646,25 +647,25 @@ Partial Class frmMain
         Me.Controls.Add(Me.btnFolder)
         Me.Controls.Add(Me.btnFile)
         Me.Controls.Add(Me.cmbConvType)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.panelResults)
         Me.Controls.Add(Me.lblError)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.txtInputValue)
+        Me.Controls.Add(Me.lblConvType)
+        Me.Controls.Add(Me.lblInputUnit)
         Me.Controls.Add(Me.cmbInputUnit)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblInputValue)
+        Me.Controls.Add(Me.txtInputValue)
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(400, 500)
         Me.MinimumSize = New System.Drawing.Size(375, 430)
         Me.Name = "frmMain"
-        Me.Padding = New System.Windows.Forms.Padding(3)
+        Me.Padding = New System.Windows.Forms.Padding(3, 3, 3, 6)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Byte Converter"
         Me.ContextMenuStrip1.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.panelResults.ResumeLayout(False)
+        Me.panelResults.PerformLayout()
         CType(Me.pBoxYB, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pBoxZB, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pBoxEB, System.ComponentModel.ISupportInitialize).EndInit()
@@ -679,17 +680,17 @@ Partial Class frmMain
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblInputValue As System.Windows.Forms.Label
     Friend WithEvents txtInputValue As System.Windows.Forms.TextBox
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents cmbInputUnit As System.Windows.Forms.ComboBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents lblInputUnit As System.Windows.Forms.Label
+    Friend WithEvents lblConvType As System.Windows.Forms.Label
     Friend WithEvents cmbConvType As System.Windows.Forms.ComboBox
     Friend WithEvents lblError As System.Windows.Forms.Label
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CloseToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents panelResults As System.Windows.Forms.Panel
     Friend WithEvents lblYB As System.Windows.Forms.Label
     Friend WithEvents txtYB As System.Windows.Forms.TextBox
     Friend WithEvents lblZB As System.Windows.Forms.Label
@@ -710,7 +711,7 @@ Partial Class frmMain
     Friend WithEvents txtKB As System.Windows.Forms.TextBox
     Friend WithEvents txtBytes As System.Windows.Forms.TextBox
     Friend WithEvents txtBits As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents lblResults As System.Windows.Forms.Label
     Friend WithEvents btnFile As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents btnFolder As System.Windows.Forms.Button

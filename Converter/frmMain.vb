@@ -234,6 +234,84 @@ Public Class frmMain
         pBox.Size = New System.Drawing.Size(22, 22)
     End Sub
 
+    Private Sub pbBox_MouseDown(sender As Object, e As EventArgs) _
+    Handles pBoxZB.MouseDown, pBoxYB.MouseDown, pBoxTB.MouseDown, pBoxPB.MouseDown, _
+    pBoxMB.MouseDown, pBoxKB.MouseDown, pBoxGB.MouseDown, pBoxEB.MouseDown, pBoxBytes.MouseDown, pBoxBits.MouseDown
+
+        'Copy individual results to clipboard
+        Dim pBox As PictureBox = DirectCast(sender, PictureBox)
+        pBox.BorderStyle = BorderStyle.Fixed3D
+        Select Case pBox.Name
+            Case pBoxBits.Name
+                My.Computer.Clipboard.SetText(txtBits.Text)
+            Case pBoxBytes.Name
+                My.Computer.Clipboard.SetText(txtBytes.Text)
+            Case pBoxKB.Name
+                My.Computer.Clipboard.SetText(txtKB.Text)
+            Case pBoxMB.Name
+                My.Computer.Clipboard.SetText(txtMB.Text)
+            Case pBoxGB.Name
+                My.Computer.Clipboard.SetText(txtGB.Text)
+            Case pBoxTB.Name
+                My.Computer.Clipboard.SetText(txtTB.Text)
+            Case pBoxPB.Name
+                My.Computer.Clipboard.SetText(txtPB.Text)
+            Case pBoxEB.Name
+                My.Computer.Clipboard.SetText(txtEB.Text)
+            Case pBoxZB.Name
+                My.Computer.Clipboard.SetText(txtZB.Text)
+            Case pBoxYB.Name
+                My.Computer.Clipboard.SetText(txtYB.Text)
+        End Select
+    End Sub
+
+    Private Sub pbBox_MouseUp(sender As Object, e As MouseEventArgs) Handles pBoxZB.MouseUp, pBoxYB.MouseUp, pBoxTB.MouseUp, pBoxPB.MouseUp, pBoxMB.MouseUp, pBoxKB.MouseUp, pBoxGB.MouseUp, pBoxEB.MouseUp, pBoxBytes.MouseUp, pBoxBits.MouseUp
+        Dim pBox As PictureBox = DirectCast(sender, PictureBox)
+        pBox.BorderStyle = BorderStyle.FixedSingle
+    End Sub
+
+    Private Sub btnIcons_MouseEnter(sender As Object, e As EventArgs) _
+    Handles btnSave.MouseEnter, btnFolder.MouseEnter, btnFile.MouseEnter, btnCalculator.MouseEnter, btnAbout.MouseEnter
+        Dim btn As Button = DirectCast(sender, Button)
+        btn.Size = New System.Drawing.Size(36, 36)
+    End Sub
+
+    Private Sub btnIcons_MouseLeave(sender As Object, e As EventArgs) _
+    Handles btnSave.MouseLeave, btnFolder.MouseLeave, btnFile.MouseLeave, btnCalculator.MouseLeave, btnAbout.MouseLeave
+        Dim btn As Button = DirectCast(sender, Button)
+        btn.Size = New System.Drawing.Size(32, 32)
+    End Sub
+
+    Private Sub frmMain_DragOver(sender As Object, e As DragEventArgs) _
+    Handles MyBase.DragOver, txtInputValue.DragOver
+        e.Effect = DragDropEffects.Copy
+    End Sub
+
+    Private Sub frmMain_DragDrop(sender As Object, e As DragEventArgs) _
+    Handles MyBase.DragDrop, txtInputValue.DragDrop
+        Dim strDragFilesArr As String()
+        Dim inputSize As Long = 0
+        Try
+            strDragFilesArr = e.Data.GetData(System.Windows.Forms.DataFormats.FileDrop)
+            If (strDragFilesArr Is Nothing) Then 'The drag-drop contents is of type "String/Text" or something else
+                txtInputValue.Text = e.Data.GetData(System.Windows.Forms.DataFormats.Text)
+            Else
+                For Each strFilePath As String In strDragFilesArr 'To handle drag-drop of combination of files and directories
+                    Dim t As Integer = New DirectoryInfo(strFilePath).Attributes
+                    'Integers represent the sum/actual-value of System.IO.FileAttribute combinations
+                    If (t = FileAttribute.Directory Or t = 48 Or t = 22) Then
+                        inputSize += getAllFolderSizes(strFilePath)
+                    Else
+                        inputSize += getAllFileSizes({strFilePath}) 'Accepts only an array of files hence the {} brackets
+                    End If
+                Next
+                txtInputValue.Text = inputSize.ToString
+            End If
+        Catch ex As Exception
+            txtInputValue.Text = "DATA UNKNOWN"
+        End Try
+    End Sub
+
 #End Region
 
 #Region "All Methods"
@@ -490,53 +568,6 @@ Public Class frmMain
 
 #End Region
 
-    Private Sub pbBox_MouseDown(sender As Object, e As EventArgs) _
-    Handles pBoxZB.MouseDown, pBoxYB.MouseDown, pBoxTB.MouseDown, pBoxPB.MouseDown, _
-    pBoxMB.MouseDown, pBoxKB.MouseDown, pBoxGB.MouseDown, pBoxEB.MouseDown, pBoxBytes.MouseDown, pBoxBits.MouseDown
-
-        'Copy individual results to clipboard
-        Dim pBox As PictureBox = DirectCast(sender, PictureBox)
-        pBox.BorderStyle = BorderStyle.Fixed3D
-        Select Case pBox.Name
-            Case pBoxBits.Name
-                My.Computer.Clipboard.SetText(txtBits.Text)
-            Case pBoxBytes.Name
-                My.Computer.Clipboard.SetText(txtBytes.Text)
-            Case pBoxKB.Name
-                My.Computer.Clipboard.SetText(txtKB.Text)
-            Case pBoxMB.Name
-                My.Computer.Clipboard.SetText(txtMB.Text)
-            Case pBoxGB.Name
-                My.Computer.Clipboard.SetText(txtGB.Text)
-            Case pBoxTB.Name
-                My.Computer.Clipboard.SetText(txtTB.Text)
-            Case pBoxPB.Name
-                My.Computer.Clipboard.SetText(txtPB.Text)
-            Case pBoxEB.Name
-                My.Computer.Clipboard.SetText(txtEB.Text)
-            Case pBoxZB.Name
-                My.Computer.Clipboard.SetText(txtZB.Text)
-            Case pBoxYB.Name
-                My.Computer.Clipboard.SetText(txtYB.Text)
-        End Select
-    End Sub
-
-    Private Sub pbBox_MouseUp(sender As Object, e As MouseEventArgs) Handles pBoxZB.MouseUp, pBoxYB.MouseUp, pBoxTB.MouseUp, pBoxPB.MouseUp, pBoxMB.MouseUp, pBoxKB.MouseUp, pBoxGB.MouseUp, pBoxEB.MouseUp, pBoxBytes.MouseUp, pBoxBits.MouseUp
-        Dim pBox As PictureBox = DirectCast(sender, PictureBox)
-        pBox.BorderStyle = BorderStyle.FixedSingle
-    End Sub
-
-    Private Sub btnIcons_MouseEnter(sender As Object, e As EventArgs) _
-    Handles btnSave.MouseEnter, btnFolder.MouseEnter, btnFile.MouseEnter, btnCalculator.MouseEnter, btnAbout.MouseEnter
-        Dim btn As Button = DirectCast(sender, Button)
-        btn.Size = New System.Drawing.Size(36, 36)
-    End Sub
-
-    Private Sub btnIcons_MouseLeave(sender As Object, e As EventArgs) _
-    Handles btnSave.MouseLeave, btnFolder.MouseLeave, btnFile.MouseLeave, btnCalculator.MouseLeave, btnAbout.MouseLeave
-        Dim btn As Button = DirectCast(sender, Button)
-        btn.Size = New System.Drawing.Size(32, 32)
-    End Sub
 End Class
 
 #End Region
