@@ -23,19 +23,19 @@
 Option Explicit On
 Imports System.IO
 
-Public Class frmAbout
+Public Class FormAbout
 
 #Region "All Events"
 
     Private Sub frmAbout_Activated(ByVal sender As Object, ByVal e As System.EventArgs) _
     Handles Me.Activated
-        frmMain.Focus()
+        FormMain.Focus()
     End Sub
 
     Private Sub frmAbout_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) _
     Handles Me.FormClosed
-        frmMain.Enabled = True
-        frmMain.Focus()
+        FormMain.Enabled = True
+        FormMain.Focus()
     End Sub
 
     Private Sub frmAbout_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) _

@@ -1,5 +1,5 @@
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmMain
+Partial Class FormMain
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -20,7 +20,7 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.lblInputValue = New System.Windows.Forms.Label()
         Me.txtInputValue = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -65,12 +65,13 @@ Partial Class frmMain
         Me.lblResults = New System.Windows.Forms.Label()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnCalculator = New System.Windows.Forms.Button()
         Me.btnAbout = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnFolder = New System.Windows.Forms.Button()
         Me.btnFile = New System.Windows.Forms.Button()
-        Me.btnCalculator = New System.Windows.Forms.Button()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btnTime = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.panelResults.SuspendLayout()
         CType(Me.pBoxYB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +91,7 @@ Partial Class frmMain
         Me.lblInputValue.AutoSize = True
         Me.lblInputValue.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblInputValue.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblInputValue.Location = New System.Drawing.Point(9, 63)
+        Me.lblInputValue.Location = New System.Drawing.Point(6, 63)
         Me.lblInputValue.Name = "lblInputValue"
         Me.lblInputValue.Size = New System.Drawing.Size(146, 16)
         Me.lblInputValue.TabIndex = 100
@@ -117,7 +118,7 @@ Partial Class frmMain
         '
         Me.AboutToolStripMenuItem.Image = CType(resources.GetObject("AboutToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
         Me.AboutToolStripMenuItem.Text = "About..."
         '
         'CloseToolStripMenuItem
@@ -135,7 +136,7 @@ Partial Class frmMain
         Me.cmbInputUnit.Items.AddRange(New Object() {"Bit", "Byte", "Kilo Byte", "Mega Byte", "Giga Byte", "Tera Byte", "Peta byte", "Exa byte"})
         Me.cmbInputUnit.Location = New System.Drawing.Point(238, 79)
         Me.cmbInputUnit.Name = "cmbInputUnit"
-        Me.cmbInputUnit.Size = New System.Drawing.Size(107, 23)
+        Me.cmbInputUnit.Size = New System.Drawing.Size(115, 23)
         Me.cmbInputUnit.TabIndex = 3
         '
         'lblInputUnit
@@ -176,9 +177,9 @@ Partial Class frmMain
         Me.lblError.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblError.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblError.ForeColor = System.Drawing.Color.Red
-        Me.lblError.Location = New System.Drawing.Point(9, 392)
+        Me.lblError.Location = New System.Drawing.Point(4, 394)
         Me.lblError.Name = "lblError"
-        Me.lblError.Size = New System.Drawing.Size(341, 40)
+        Me.lblError.Size = New System.Drawing.Size(349, 40)
         Me.lblError.TabIndex = 114
         Me.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -215,9 +216,9 @@ Partial Class frmMain
         Me.panelResults.Controls.Add(Me.txtBytes)
         Me.panelResults.Controls.Add(Me.txtBits)
         Me.panelResults.Controls.Add(Me.lblResults)
-        Me.panelResults.Location = New System.Drawing.Point(4, 106)
+        Me.panelResults.Location = New System.Drawing.Point(4, 108)
         Me.panelResults.Name = "panelResults"
-        Me.panelResults.Size = New System.Drawing.Size(346, 282)
+        Me.panelResults.Size = New System.Drawing.Size(349, 282)
         Me.panelResults.TabIndex = 115
         '
         'pBoxYB
@@ -551,6 +552,22 @@ Partial Class frmMain
         Me.FolderBrowserDialog1.Description = "Choose a folder whose size is to be converted"
         Me.FolderBrowserDialog1.ShowNewFolderButton = False
         '
+        'btnCalculator
+        '
+        Me.btnCalculator.FlatAppearance.BorderSize = 0
+        Me.btnCalculator.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnCalculator.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCalculator.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCalculator.ForeColor = System.Drawing.Color.Black
+        Me.btnCalculator.Image = Global.Converter.My.Resources.Resources.calc_small
+        Me.btnCalculator.Location = New System.Drawing.Point(164, 18)
+        Me.btnCalculator.Name = "btnCalculator"
+        Me.btnCalculator.Size = New System.Drawing.Size(32, 32)
+        Me.btnCalculator.TabIndex = 123
+        Me.btnCalculator.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.ToolTip1.SetToolTip(Me.btnCalculator, "Open Calculator")
+        Me.btnCalculator.UseVisualStyleBackColor = True
+        '
         'btnAbout
         '
         Me.btnAbout.FlatAppearance.BorderSize = 0
@@ -575,7 +592,7 @@ Partial Class frmMain
         Me.btnSave.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.Black
         Me.btnSave.Image = Global.Converter.My.Resources.Resources.save_small
-        Me.btnSave.Location = New System.Drawing.Point(276, 18)
+        Me.btnSave.Location = New System.Drawing.Point(275, 18)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(32, 32)
         Me.btnSave.TabIndex = 121
@@ -591,7 +608,7 @@ Partial Class frmMain
         Me.btnFolder.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFolder.ForeColor = System.Drawing.Color.Black
         Me.btnFolder.Image = Global.Converter.My.Resources.Resources.folder_small
-        Me.btnFolder.Location = New System.Drawing.Point(239, 18)
+        Me.btnFolder.Location = New System.Drawing.Point(238, 18)
         Me.btnFolder.Name = "btnFolder"
         Me.btnFolder.Size = New System.Drawing.Size(32, 32)
         Me.btnFolder.TabIndex = 118
@@ -607,7 +624,7 @@ Partial Class frmMain
         Me.btnFile.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnFile.ForeColor = System.Drawing.Color.Black
         Me.btnFile.Image = Global.Converter.My.Resources.Resources.file_small
-        Me.btnFile.Location = New System.Drawing.Point(202, 18)
+        Me.btnFile.Location = New System.Drawing.Point(201, 18)
         Me.btnFile.Name = "btnFile"
         Me.btnFile.Size = New System.Drawing.Size(32, 32)
         Me.btnFile.TabIndex = 117
@@ -615,23 +632,23 @@ Partial Class frmMain
         Me.ToolTip1.SetToolTip(Me.btnFile, "Convert File Sizes")
         Me.btnFile.UseVisualStyleBackColor = True
         '
-        'btnCalculator
+        'btnTime
         '
-        Me.btnCalculator.FlatAppearance.BorderSize = 0
-        Me.btnCalculator.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnCalculator.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCalculator.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCalculator.ForeColor = System.Drawing.Color.Black
-        Me.btnCalculator.Image = Global.Converter.My.Resources.Resources.calc_small
-        Me.btnCalculator.Location = New System.Drawing.Point(165, 18)
-        Me.btnCalculator.Name = "btnCalculator"
-        Me.btnCalculator.Size = New System.Drawing.Size(32, 32)
-        Me.btnCalculator.TabIndex = 123
-        Me.btnCalculator.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.ToolTip1.SetToolTip(Me.btnCalculator, "Open Calculator")
-        Me.btnCalculator.UseVisualStyleBackColor = True
+        Me.btnTime.FlatAppearance.BorderSize = 0
+        Me.btnTime.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTime.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTime.ForeColor = System.Drawing.Color.Black
+        Me.btnTime.Image = Global.Converter.My.Resources.Resources.clock_small
+        Me.btnTime.Location = New System.Drawing.Point(126, 18)
+        Me.btnTime.Name = "btnTime"
+        Me.btnTime.Size = New System.Drawing.Size(32, 32)
+        Me.btnTime.TabIndex = 124
+        Me.btnTime.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.ToolTip1.SetToolTip(Me.btnTime, "Estimate Transfer Time")
+        Me.btnTime.UseVisualStyleBackColor = True
         '
-        'frmMain
+        'FormMain
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -639,8 +656,9 @@ Partial Class frmMain
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.AliceBlue
-        Me.ClientSize = New System.Drawing.Size(359, 440)
+        Me.ClientSize = New System.Drawing.Size(359, 439)
         Me.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.Controls.Add(Me.btnTime)
         Me.Controls.Add(Me.btnCalculator)
         Me.Controls.Add(Me.btnAbout)
         Me.Controls.Add(Me.btnSave)
@@ -657,9 +675,8 @@ Partial Class frmMain
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(400, 500)
         Me.MinimumSize = New System.Drawing.Size(375, 430)
-        Me.Name = "frmMain"
+        Me.Name = "FormMain"
         Me.Padding = New System.Windows.Forms.Padding(3, 3, 3, 6)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Byte Converter"
@@ -730,5 +747,6 @@ Partial Class frmMain
     Friend WithEvents pBoxMB As System.Windows.Forms.PictureBox
     Friend WithEvents pBoxKB As System.Windows.Forms.PictureBox
     Friend WithEvents pBoxBytes As System.Windows.Forms.PictureBox
+    Friend WithEvents btnTime As System.Windows.Forms.Button
 
 End Class

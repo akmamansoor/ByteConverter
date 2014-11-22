@@ -41,14 +41,14 @@ Option Explicit On
 Imports System.Text.RegularExpressions
 Imports System.IO
 
-Public Class frmMain
+Public Class FormMain
 
 #Region "All Declarations"
 
     Dim index As Integer
-    Dim input As Double = 0.0
+    Public input As Double = 0.0
     Dim convFrom, temp As Byte
-    Dim convType As Short
+    Public convType As Short
     Dim decimalArray() As String = {"Bits", "Bytes", "Kilo Bytes (KB)", "Mega Bytes (MB)", "Giga Bytes (GB)", _
       "Tera Bytes (TB)", "Peta Bytes (PB)", "Exa Bytes (EB)", "Zetta Bytes (ZB)", "Yotta Bytes (YB)"}
     Dim binaryArray() As String = {"Bits", "Bytes", "Kibi Bytes (KiB)", "Mebi Bytes (MiB)", "Gibi Bytes (GiB)", _
@@ -67,7 +67,7 @@ Public Class frmMain
     Private Sub frmMain_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) _
     Handles Me.GotFocus
         If Me.Enabled = False Then
-            frmAbout.Focus()
+            FormAbout.Focus()
         End If
     End Sub
 
@@ -219,6 +219,12 @@ Public Class frmMain
         showAboutForm()
     End Sub
 
+    Private Sub btnTime_Click(sender As Object, e As EventArgs) Handles btnTime.Click
+        Me.Enabled = False
+        FormTransferTime.Show()
+        FormTransferTime.Focus()
+    End Sub
+
     Private Sub pbox_MouseEnter(sender As Object, e As EventArgs) _
     Handles pBoxZB.MouseEnter, pBoxYB.MouseEnter, pBoxTB.MouseEnter, pBoxPB.MouseEnter, _
     pBoxMB.MouseEnter, pBoxKB.MouseEnter, pBoxGB.MouseEnter, pBoxEB.MouseEnter, pBoxBytes.MouseEnter, pBoxBits.MouseEnter
@@ -271,13 +277,13 @@ Public Class frmMain
     End Sub
 
     Private Sub btnIcons_MouseEnter(sender As Object, e As EventArgs) _
-    Handles btnSave.MouseEnter, btnFolder.MouseEnter, btnFile.MouseEnter, btnCalculator.MouseEnter, btnAbout.MouseEnter
+    Handles btnSave.MouseEnter, btnFolder.MouseEnter, btnFile.MouseEnter, btnCalculator.MouseEnter, btnAbout.MouseEnter, btnTime.MouseEnter
         Dim btn As Button = DirectCast(sender, Button)
         btn.Size = New System.Drawing.Size(36, 36)
     End Sub
 
     Private Sub btnIcons_MouseLeave(sender As Object, e As EventArgs) _
-    Handles btnSave.MouseLeave, btnFolder.MouseLeave, btnFile.MouseLeave, btnCalculator.MouseLeave, btnAbout.MouseLeave
+    Handles btnSave.MouseLeave, btnFolder.MouseLeave, btnFile.MouseLeave, btnCalculator.MouseLeave, btnAbout.MouseLeave, btnTime.MouseLeave
         Dim btn As Button = DirectCast(sender, Button)
         btn.Size = New System.Drawing.Size(32, 32)
     End Sub
@@ -369,7 +375,7 @@ Public Class frmMain
         Else
             temp = CByte(cmbInputUnit.SelectedIndex)
         End If
-        cmbInputUnit.Items.Clear()
+        cmbInputUnit.DataSource = Nothing
 
         If cmbConvType.SelectedIndex = 0 Then
             lblKB.Text = decimalArray(2)
@@ -380,16 +386,7 @@ Public Class frmMain
             lblEB.Text = decimalArray(7)
             lblZB.Text = decimalArray(8)
             lblYB.Text = decimalArray(9)
-            cmbInputUnit.Items.Add(decimalArray(0))
-            cmbInputUnit.Items.Add(decimalArray(1))
-            cmbInputUnit.Items.Add(decimalArray(2))
-            cmbInputUnit.Items.Add(decimalArray(3))
-            cmbInputUnit.Items.Add(decimalArray(4))
-            cmbInputUnit.Items.Add(decimalArray(5))
-            cmbInputUnit.Items.Add(decimalArray(6))
-            cmbInputUnit.Items.Add(decimalArray(7))
-            cmbInputUnit.Items.Add(decimalArray(8))
-            cmbInputUnit.Items.Add(decimalArray(9))
+            cmbInputUnit.DataSource = decimalArray
         Else
             lblKB.Text = binaryArray(2)
             lblMB.Text = binaryArray(3)
@@ -399,16 +396,7 @@ Public Class frmMain
             lblEB.Text = binaryArray(7)
             lblZB.Text = binaryArray(8)
             lblYB.Text = binaryArray(9)
-            cmbInputUnit.Items.Add(binaryArray(0))
-            cmbInputUnit.Items.Add(binaryArray(1))
-            cmbInputUnit.Items.Add(binaryArray(2))
-            cmbInputUnit.Items.Add(binaryArray(3))
-            cmbInputUnit.Items.Add(binaryArray(4))
-            cmbInputUnit.Items.Add(binaryArray(5))
-            cmbInputUnit.Items.Add(binaryArray(6))
-            cmbInputUnit.Items.Add(binaryArray(7))
-            cmbInputUnit.Items.Add(binaryArray(8))
-            cmbInputUnit.Items.Add(binaryArray(9))
+            cmbInputUnit.DataSource = binaryArray
         End If
         cmbInputUnit.SelectedIndex = temp
     End Sub
@@ -453,6 +441,7 @@ Public Class frmMain
                 End If
 
                 ' Converts the input value from the given unit (convFrom) to bits.
+                ' Convert Bytes to bits by multiplying with "8"
                 Select Case convFrom
                     Case 0 ' Bit
                         input = input
@@ -512,7 +501,7 @@ Public Class frmMain
             Else
                 txtBits.Text = input.ToString
                 txtBytes.Text = (input / 8).ToString
-                txtKB.Text = (input / (8 * convType)).ToString
+                txtKB.Text = (input / (8 * (convType ^ 1))).ToString
                 txtMB.Text = (input / (8 * (convType ^ 2))).ToString
                 txtGB.Text = (input / (8 * (convType ^ 3))).ToString
                 txtTB.Text = (input / (8 * (convType ^ 4))).ToString
@@ -547,8 +536,8 @@ Public Class frmMain
 
     Private Sub showAboutForm()
         Me.Enabled = False
-        frmAbout.Show()
-        frmAbout.Focus()
+        FormAbout.Show()
+        FormAbout.Focus()
     End Sub
 
     Public Function SaveTextToFile(ByVal textToBeSaved As String, ByVal filePath As String) As Boolean
