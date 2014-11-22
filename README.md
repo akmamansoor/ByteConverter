@@ -14,8 +14,8 @@ __Screenshot:__
 * Main Window
 ![converter 1 5](https://cloud.githubusercontent.com/assets/6729363/5155790/bbe744ba-72be-11e4-82ec-19ea3bd7ce1e.png)
 
-* Estimated transfer time for a 1.4 Gibi Byte File
+* Estimated transfer time for a 1.4 Gibi Byte File  
 ![transfer time 1](https://cloud.githubusercontent.com/assets/6729363/5155812/b1b1bc90-72bf-11e4-82dc-cbe976a8d575.PNG)
 
-* Estimated transfer time for a 1 Exa Byte File
+* Estimated transfer time for a 1 Exa Byte File  
 ![transfer time 2](https://cloud.githubusercontent.com/assets/6729363/5155825/702958fe-72c0-11e4-8a01-6fc35b660e45.PNG)
