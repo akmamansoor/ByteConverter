@@ -23,7 +23,7 @@
 ' Application   :- Byte Converter
 ' Developer     :- A.K. Mansoor Ahamed (alias) A.K.M.A
 ' Company       :- AKMA Solutions
-' Date          :- November 2014
+' Date          :- February 2015
 ' Email         :- akma.mansoor@gmail.com 
 
 ' Description   :- Byte Converter is a simple utility to convert numeric units of digital information from one form to another. 
@@ -49,9 +49,9 @@ Public Class FormMain
     Public input As Double = 0.0
     Dim convFrom, temp As Byte
     Public convType As Short
-    Dim decimalArray() As String = {"Bits", "Bytes", "Kilo Bytes (KB)", "Mega Bytes (MB)", "Giga Bytes (GB)", _
+    Public decimalArray() As String = {"Bits", "Bytes", "Kilo Bytes (KB)", "Mega Bytes (MB)", "Giga Bytes (GB)", _
       "Tera Bytes (TB)", "Peta Bytes (PB)", "Exa Bytes (EB)", "Zetta Bytes (ZB)", "Yotta Bytes (YB)"}
-    Dim binaryArray() As String = {"Bits", "Bytes", "Kibi Bytes (KiB)", "Mebi Bytes (MiB)", "Gibi Bytes (GiB)", _
+    Public binaryArray() As String = {"Bits", "Bytes", "Kibi Bytes (KiB)", "Mebi Bytes (MiB)", "Gibi Bytes (GiB)", _
      "Tebi Bytes (TiB)", "Pebi Bytes (PiB)", "Exbi Bytes (EiB)", "Zebi Bytes (ZiB)", "Yobi Bytes (YiB)"}
     Dim WithEvents myProcess As New Process
     Dim InstanceArrayOfMyProcess As Process()
@@ -220,6 +220,8 @@ Public Class FormMain
     End Sub
 
     Private Sub btnTime_Click(sender As Object, e As EventArgs) Handles btnTime.Click
+        FormTransferTime.setDataSize(txtInputValue.Text.ToString)
+        FormTransferTime.setDataUnits(cmbConvType.SelectedIndex)
         Me.Enabled = False
         FormTransferTime.Show()
         FormTransferTime.Focus()

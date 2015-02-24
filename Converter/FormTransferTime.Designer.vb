@@ -24,6 +24,9 @@ Partial Class FormTransferTime
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormTransferTime))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cmbDataUnit = New System.Windows.Forms.ComboBox()
+        Me.lblSpeed = New System.Windows.Forms.Label()
+        Me.txtDataSize = New System.Windows.Forms.TextBox()
         Me.lblPerSecond = New System.Windows.Forms.Label()
         Me.mskTxtBandwidth = New System.Windows.Forms.MaskedTextBox()
         Me.txtTime = New System.Windows.Forms.TextBox()
@@ -37,6 +40,9 @@ Partial Class FormTransferTime
         Me.Panel1.AutoSize = True
         Me.Panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.Panel1.BackColor = System.Drawing.Color.LightGoldenrodYellow
+        Me.Panel1.Controls.Add(Me.cmbDataUnit)
+        Me.Panel1.Controls.Add(Me.lblSpeed)
+        Me.Panel1.Controls.Add(Me.txtDataSize)
         Me.Panel1.Controls.Add(Me.lblPerSecond)
         Me.Panel1.Controls.Add(Me.mskTxtBandwidth)
         Me.Panel1.Controls.Add(Me.txtTime)
@@ -45,15 +51,45 @@ Partial Class FormTransferTime
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(478, 84)
+        Me.Panel1.Size = New System.Drawing.Size(333, 371)
         Me.Panel1.TabIndex = 127
+        '
+        'cmbDataUnit
+        '
+        Me.cmbDataUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbDataUnit.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbDataUnit.FormattingEnabled = True
+        Me.cmbDataUnit.Location = New System.Drawing.Point(186, 28)
+        Me.cmbDataUnit.Name = "cmbDataUnit"
+        Me.cmbDataUnit.Size = New System.Drawing.Size(142, 23)
+        Me.cmbDataUnit.TabIndex = 139
+        '
+        'lblSpeed
+        '
+        Me.lblSpeed.AutoSize = True
+        Me.lblSpeed.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSpeed.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.lblSpeed.Location = New System.Drawing.Point(9, 63)
+        Me.lblSpeed.Margin = New System.Windows.Forms.Padding(0)
+        Me.lblSpeed.Name = "lblSpeed"
+        Me.lblSpeed.Size = New System.Drawing.Size(110, 16)
+        Me.lblSpeed.TabIndex = 138
+        Me.lblSpeed.Text = "at the speed of: "
+        '
+        'txtDataSize
+        '
+        Me.txtDataSize.Location = New System.Drawing.Point(12, 31)
+        Me.txtDataSize.Name = "txtDataSize"
+        Me.txtDataSize.Size = New System.Drawing.Size(167, 20)
+        Me.txtDataSize.TabIndex = 1
+        Me.txtDataSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'lblPerSecond
         '
         Me.lblPerSecond.AutoSize = True
         Me.lblPerSecond.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPerSecond.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblPerSecond.Location = New System.Drawing.Point(343, 9)
+        Me.lblPerSecond.Location = New System.Drawing.Point(182, 83)
         Me.lblPerSecond.Margin = New System.Windows.Forms.Padding(0)
         Me.lblPerSecond.Name = "lblPerSecond"
         Me.lblPerSecond.Size = New System.Drawing.Size(78, 16)
@@ -66,23 +102,23 @@ Partial Class FormTransferTime
         Me.mskTxtBandwidth.AsciiOnly = True
         Me.mskTxtBandwidth.BeepOnError = True
         Me.mskTxtBandwidth.HidePromptOnLeave = True
-        Me.mskTxtBandwidth.Location = New System.Drawing.Point(218, 8)
+        Me.mskTxtBandwidth.Location = New System.Drawing.Point(12, 82)
         Me.mskTxtBandwidth.Mask = "00000"
         Me.mskTxtBandwidth.Name = "mskTxtBandwidth"
         Me.mskTxtBandwidth.Size = New System.Drawing.Size(55, 20)
-        Me.mskTxtBandwidth.TabIndex = 135
+        Me.mskTxtBandwidth.TabIndex = 2
         Me.mskTxtBandwidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.mskTxtBandwidth.ValidatingType = GetType(Integer)
         '
         'txtTime
         '
         Me.txtTime.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTime.Location = New System.Drawing.Point(7, 35)
+        Me.txtTime.Location = New System.Drawing.Point(7, 110)
         Me.txtTime.Multiline = True
         Me.txtTime.Name = "txtTime"
         Me.txtTime.ReadOnly = True
-        Me.txtTime.Size = New System.Drawing.Size(463, 41)
-        Me.txtTime.TabIndex = 134
+        Me.txtTime.Size = New System.Drawing.Size(321, 256)
+        Me.txtTime.TabIndex = 4
         Me.txtTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'cmbBandwidthUnits
@@ -90,29 +126,29 @@ Partial Class FormTransferTime
         Me.cmbBandwidthUnits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBandwidthUnits.Font = New System.Drawing.Font("Arial", 9.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbBandwidthUnits.FormattingEnabled = True
-        Me.cmbBandwidthUnits.Location = New System.Drawing.Point(279, 6)
+        Me.cmbBandwidthUnits.Location = New System.Drawing.Point(73, 81)
         Me.cmbBandwidthUnits.Name = "cmbBandwidthUnits"
-        Me.cmbBandwidthUnits.Size = New System.Drawing.Size(64, 23)
-        Me.cmbBandwidthUnits.TabIndex = 132
+        Me.cmbBandwidthUnits.Size = New System.Drawing.Size(106, 23)
+        Me.cmbBandwidthUnits.TabIndex = 3
         '
         'lblTime
         '
         Me.lblTime.AutoSize = True
         Me.lblTime.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTime.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblTime.Location = New System.Drawing.Point(47, 9)
+        Me.lblTime.Location = New System.Drawing.Point(9, 12)
         Me.lblTime.Margin = New System.Windows.Forms.Padding(0)
         Me.lblTime.Name = "lblTime"
-        Me.lblTime.Size = New System.Drawing.Size(175, 16)
+        Me.lblTime.Size = New System.Drawing.Size(183, 16)
         Me.lblTime.TabIndex = 131
-        Me.lblTime.Text = "Estimated transfer time @ "
+        Me.lblTime.Text = "Estimated transfer time for: "
         '
         'FormTransferTime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(478, 84)
+        Me.ClientSize = New System.Drawing.Size(333, 371)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
@@ -132,4 +168,7 @@ Partial Class FormTransferTime
     Friend WithEvents lblTime As System.Windows.Forms.Label
     Friend WithEvents mskTxtBandwidth As System.Windows.Forms.MaskedTextBox
     Friend WithEvents lblPerSecond As System.Windows.Forms.Label
+    Friend WithEvents lblSpeed As System.Windows.Forms.Label
+    Friend WithEvents txtDataSize As System.Windows.Forms.TextBox
+    Friend WithEvents cmbDataUnit As System.Windows.Forms.ComboBox
 End Class
